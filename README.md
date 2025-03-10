@@ -14,7 +14,7 @@ Nesting is done by add a second tag:
 ` <div> <h1> Hi </h1> </div>`
 
 To Nest a 2nd coponent is by adding a closing tag after the first child to start another child:
-`$div $h1 1st child %h1 $h1 2nd child %h1`` 
+`$div $h1 1st child %h1 $h1 2nd child %h1`
 becomes 
 ` <div> <h1> 1st child </h1> <h1> 2nd child </h1> </div>`
 
