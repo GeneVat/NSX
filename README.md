@@ -10,8 +10,7 @@ Content is put after the tag with no closing:
 `$h1 Hi` becomes ` <h1> Hi </h1> `
 
 Nesting is done by add a second tag:
-`$div $h1 Hi` 
-becomes 
+`$div $h1 Hi` becomes 
 ` <div> <h1> Hi </h1> </div>`
 
 To Nest a 2nd coponent is by adding a closing tag after the first child to start another child:
