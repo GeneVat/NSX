@@ -3,7 +3,7 @@
 NDX is a HTML syntax.
 #### Tags
 $ are open tags and % are optional closing tags.
-
+@script is used for js
 #### Format
 
 Content is put after the tag with no closing:
@@ -38,14 +38,14 @@ Using the second will end all tags so a <html> around the whole file would end.
 To add a style  `$h1=style="color:red;"` or `$h1+style="color:red;"`
 The 1st one doesnt work on %img that only have ending tags.
 
+Use ! to create pre classed or styled
+`!bluetext $p=style="color: blue;"`
+now `$bluetext` will be $p=style="color: blue;"
+`+` is a space
 #### TLDR
 
 $ - Open Tag
 % - Closing tag
 & - 'Starts' new code disconected from the rest 
 add +class/href/style="text" to a open tag to add content
-
-
-
-
-
+@, same as $, but for JS
