@@ -4,37 +4,36 @@ import shutil
 
 # Define the mapping of NSX tags to HTML tags
 tag_map = {
-    '$html': 'html',
+    #beta tag
+    '$nsx': 'html',
     '$head': 'head',
     '$title': 'title',
     '$body': 'body',
     '$section': 'section',
     '$style': 'style',
-    '$nav': 'nav',
-    '$h1': 'h1',
-    '$h2': 'h2',
-    '$h3': 'h3',
-    '$p': 'p',
-    '$br': 'br',
-    '$strong': 'strong',
-    '$em': 'em',
-    '$b': 'b',
-    '$i': 'i',
-    '$u': 'u',
-    '$a': 'a',
-    '$img': 'img',
-    '$div': 'div',
+    '$navigation': 'nav',
+    '$heading1': 'h1',
+    '$heading2': 'h2',
+    '$heading3': 'h3',
+    '$paragraph': 'p',
+    '$linebreak': 'br',
+    '$bold': 'strong',  
+    '$emphasis': 'em',
+    '$boldtext': 'b',
+    '$italic': 'i',
+    '$underline': 'u',
+    '$link': 'a',
+    '$image': 'img',
+    '$division': 'div',
     '$span': 'span',
-    '$pre': 'pre',
-    '$code': 'code',
     '$blockquote': 'blockquote',
-    '$ol': 'ol',
-    '$ul': 'ul',
-    '$li': 'li',
+    '$orderedlist': 'ol',
+    '$unorderedlist': 'ul',
+    '$listitem': 'li',
     '$table': 'table',
-    '$tr': 'tr',
-    '$th': 'th',
-    '$td': 'td',
+    '$tablerow': 'tr',
+    '$tableheader': 'th',
+    '$tabledata': 'td',
     '$form': 'form',
     '$input': 'input',
     '$button': 'button',
@@ -44,11 +43,51 @@ tag_map = {
     '$label': 'label',
     '$fieldset': 'fieldset',
     '$legend': 'legend',
-    '@script': 'script',
+    '@js': 'script',
+    #normal tag
+    '$html': 'html',
+    '$head': 'head',
+    '$title': 'title',
+    '$body': 'body',
+    '$section': 'section',
+    '$style': 'style',
+    '$navigation': 'navigation',
+    '$h1': 'h1',
+    '$h2': 'h2',
+    '$h3': 'h3',
+    '$paragraph': 'paragraph',
+    '$linebreak': 'linebreak',
+    '$bold': 'bold',  
+    '$emphasis': 'emphasis',
+    '$boldtext': 'boldtext',
+    '$italic': 'italic',
+    '$underline': 'underline',
+    '$link': 'link',
+    '$image': 'image',
+    '$division': 'division',
+    '$span': 'span',
+    '$blockquote': 'blockquote',
+    '$orderedlist': 'orderedlist',
+    '$unorderedlist': 'unorderedlist',
+    '$listitem': 'listitem',
+    '$table': 'table',
+    '$tablerow': 'tablerow',
+    '$tableheader': 'tableheader',
+    '$tabledata': 'tabledata',
+    '$form': 'form',
+    '$input': 'input',
+    '$button': 'button',
+    '$select': 'select',
+    '$option': 'option',
+    '$textarea': 'textarea',
+    '$label': 'label',
+    '$fieldset': 'fieldset',
+    '$legend': 'legend',
+    '@script': 'script'
 }
 
 # Function to preprocess NSX lines by removing spaces inside quotes
-def remove_spaces_inside_quotes(nsx_lines):
+def preprocess_nsx_lines(nsx_lines):
     preprocessed_lines = []
     for line in nsx_lines:
         # Remove spaces inside quotes
@@ -56,8 +95,8 @@ def remove_spaces_inside_quotes(nsx_lines):
         preprocessed_lines.append(line)
     return preprocessed_lines
 
-# Function to treat all lines as one, breaking on '&' for new line
-def merge_lines(nsx_lines):
+# Function to merge all lines into one, breaking on '&' for new line
+def merge_nsx_lines(nsx_lines):
     # Join all lines into one big line
     joined_lines = ' '.join([line.strip() for line in nsx_lines])
 
@@ -66,14 +105,14 @@ def merge_lines(nsx_lines):
 
 # Function to process NSX input and convert it to HTML
 def convert_nsx_to_html(nsx_lines):
-    output = []
-    custom_tags = {}  # Added custom tag mapping dictionary
+    html_output = []
+    custom_tag_map = {}  # Added custom tag mapping dictionary
 
     # Preprocess lines to remove spaces inside quotes
-    nsx_lines = remove_spaces_inside_quotes(nsx_lines)
+    nsx_lines = preprocess_nsx_lines(nsx_lines)
     
     # Merge lines into a single line and treat '&' as a new line marker
-    nsx_lines = merge_lines(nsx_lines)
+    nsx_lines = merge_nsx_lines(nsx_lines)
 
     # Split the lines based on the special marker '&'
     nsx_lines_split = nsx_lines.split(' &')
@@ -98,7 +137,7 @@ def convert_nsx_to_html(nsx_lines):
                 if i + 1 < len(words):
                     alias = '$' + word[1:]
                     definition = words[i + 1]
-                    custom_tags[alias] = definition
+                    custom_tag_map[alias] = definition
                     # Skip these tokens from output
                     i += 2
                     continue
@@ -110,9 +149,9 @@ def convert_nsx_to_html(nsx_lines):
                     base_end = token.find('+')
                     base_tag = token[:base_end]
                     attributes = token[base_end+1:].replace('+', ' ')
-                    # Check custom_tags if base_tag is not in tag_map
-                    if base_tag not in tag_map and base_tag in custom_tags:
-                        token = custom_tags[base_tag]
+                    # Check custom_tag_map if base_tag is not in tag_map
+                    if base_tag not in tag_map and base_tag in custom_tag_map:
+                        token = custom_tag_map[base_tag]
                     else:
                         if base_tag in tag_map:
                             tag_name = tag_map[base_tag]
@@ -123,8 +162,8 @@ def convert_nsx_to_html(nsx_lines):
                             i += 1
                             continue
                 else:
-                    if token not in tag_map and token in custom_tags:
-                        token = custom_tags[token]
+                    if token not in tag_map and token in custom_tag_map:
+                        token = custom_tag_map[token]
                 match = re.match(r'(\$\w+)(=(.*))?', token)
                 if match:
                     base_tag = match.group(1)
@@ -172,53 +211,53 @@ def convert_nsx_to_html(nsx_lines):
         while tag_stack:
             result.append(tag_stack.pop())
 
-        output.append(' '.join(result))
+        html_output.append(' '.join(result))
 
     # Convert remaining '+' to space in the final output
-    final_output = '\n'.join(output).replace('+', ' ')
-    return final_output
+    final_html_output = '\n'.join(html_output).replace('+', ' ')
+    return final_html_output
 
 # Function to read NSX file and compile it to HTML
-def compile_nsx_to_html(input_file, output_file):
+def compile_nsx_to_html(input_file_path, output_file_path):
     try:
         # Read the NSX input file
-        with open(input_file, 'r') as infile:
+        with open(input_file_path, 'r') as infile:
             nsx_lines = infile.readlines()
 
         # Process the content and convert to HTML
         compiled_html = convert_nsx_to_html(nsx_lines)
 
         # Save the processed HTML content to output file
-        with open(output_file, 'w') as outfile:
+        with open(output_file_path, 'w') as outfile:
             outfile.write(compiled_html)
 
-        print(f"Compilation complete! The HTML output has been saved to {output_file}")
+        print(f"Compilation complete! The HTML output has been saved to {output_file_path}")
     
     except FileNotFoundError:
-        print(f"Error: The file {input_file} was not found.")
+        print(f"Error: The file {input_file_path} was not found.")
     except Exception as e:
         print(f"Error: {e}")
 
 # Main function to run the script
 if __name__ == "__main__":
-    input_dir = '../'
-    output_dir = 'dist/'
+    input_directory = '../'
+    output_directory = 'dist/'
 
     # Delete all files in the output directory
-    if os.path.exists(output_dir):
-        shutil.rmtree(output_dir)
-    os.makedirs(output_dir)
+    if os.path.exists(output_directory):
+        shutil.rmtree(output_directory)
+    os.makedirs(output_directory)
 
-    for root, dirs, files in os.walk(input_dir):
+    for root, dirs, files in os.walk(input_directory):
         # Skip the src directory
         if 'src' in root:
             continue
         for filename in files:
             if filename.endswith('.nsx'):
-                input_file = os.path.join(root, filename)
-                relative_path = os.path.relpath(root, input_dir)
-                output_subdir = os.path.join(output_dir, relative_path)
-                if not os.path.exists(output_subdir):
-                    os.makedirs(output_subdir)
-                output_file = os.path.join(output_subdir, f"{os.path.splitext(filename)[0]}.html")
-                compile_nsx_to_html(input_file, output_file)
+                input_file_path = os.path.join(root, filename)
+                relative_path = os.path.relpath(root, input_directory)
+                output_subdirectory = os.path.join(output_directory, relative_path)
+                if not os.path.exists(output_subdirectory):
+                    os.makedirs(output_subdirectory)
+                output_file_path = os.path.join(output_subdirectory, f"{os.path.splitext(filename)[0]}.html")
+                compile_nsx_to_html(input_file_path, output_file_path)
