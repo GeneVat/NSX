@@ -1,50 +1,37 @@
-# NDX
-***
-NDX is a HTML syntax.
-#### Tags
-$ are open tags and % are optional closing tags.
-@js is used for <script>
-#### Format
+# NSX Guide
 
-Content is put after the tag with no closing:
-`$h1 Hi` becomes ` <h1> Hi </h1> `
+This document explains how to convert shorthand syntax into standard code.
 
-Nesting is done by add a second tag:
-`$div $h1 Hi` becomes 
-` <div> <h1> Hi </h1> </div>`
+## HTML
 
-To Nest a 2nd coponent is by adding a closing tag after the first child to start another child:
-`$div $h1 1st child %h1 $h1 2nd child %h1`
-becomes 
-` <div> <h1> 1st child </h1> <h1> 2nd child </h1> </div>`
+- Use `$` to denote HTML tags.
+- Example:
+  - `$h1 hi` converts to `<h1>hi</h1>`
+  - `$h1+class="text" hi` converts to `<h1 class="text">hi</h1>`
 
-All lines compile as one line,
-` $div $h1 Hi `
-` $h2 Hi `
-Will compile the same as: ` $div $h1 Hi $h2 Hi ` 
-Which will output:  `<div> <h1> Hi <h2> Hi </h2> </h1> </div>`
-With the `<h2> inside the <h1>`
-To output:  ` <div> <h1> Hi </h1> <h2> Hi </h2> </div> `
-Write,
-` $div $h1 Hi %div`
-` $h2 Hi `
-or 
-` $div $h1 Hi`
-` & $h2 Hi `
-Using the second will end all tags so a <html> around the whole file would end.
+## CSS
 
-#### Inline Styling and classes
-To add a style  `$h1=style="color:red;"` or `$h1+style="color:red;"`
-The 1st one doesnt work on %img that only have ending tags.
+- Use `%` for CSS rules.
+- Example:
+  - `%body { background-color: #f0f0f0; }` converts to `body { background-color: #f0f0f0; }`
 
-Use ! to create pre classed or styled
-`!bluetext $p=style="color: blue;"`
-now `$bluetext` will be $p=style="color: blue;"
-`+` is a space
-#### TLDR
+## JavaScript
 
-$ - Open Tag
-% - Closing tag
-& - 'Starts' new code disconected from the rest 
-add +class/href/style="text" to a open tag to add content
-@, same as $, but for JS tag, @js
+- Use `!` to denote single-line JS statements.
+  - Example: `!console.log('Hello, World!');` converts to `console.log('Hello, World!');`
+
+### Multi-line JavaScript
+
+Enclose multi-line JS blocks between ```# and #js``` markers:
+``#
+console.log('This is a multi-line JS block.');
+console.log('It will be added to script.js');
+#js``
+converts to:
+console.log('This is a multi-line JS block.');
+console.log('It will be added to script.js');
+
+## Create and Import
+
+- `#import 'external.js'` imports an external JavaScript file.
+- `#create 'newfile.js'` creates and imports a new JavaScript file.
