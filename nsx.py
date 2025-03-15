@@ -10,6 +10,15 @@ def convert_nsx():
     with open(nsx_file, 'r') as f:
         nsx_content = f.read()
     
+    # Determine multiline JS markers based on version
+    lines = nsx_content.splitlines()
+    if any(line.strip() == "#0.4.1" for line in lines):
+        multi_js_start = "#"
+        multi_js_end = "#js"
+    else:
+        multi_js_start = "#jss"
+        multi_js_end = "#jse"
+    
     html_content = ""
     css_content = ""
     js_content = ""
@@ -22,12 +31,12 @@ def convert_nsx():
         stripped = line.lstrip()
         # Handle multi-line JS block
         if inside_js_block:
-            if stripped.startswith("#js"):
+            if stripped.startswith(multi_js_end):
                 inside_js_block = False
             else:
                 js_content += line + "\n"
             continue
-        if stripped == "#":
+        if stripped == multi_js_start:
             inside_js_block = True
             continue
         # Handle #import directive
