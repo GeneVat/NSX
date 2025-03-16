@@ -1,7 +1,5 @@
 # NSX Guide
 
-To use # and #js like v0.4.0 have `#0.4.0` as a line.
-
 ## HTML
 
 - Use `$` to denote HTML tags.
@@ -30,8 +28,3 @@ console.log('It will be added to script.js');
 converts to:
 console.log('This is a multi-line JS block.');
 console.log('It will be added to script.js');
-
-## Create and Import
-
-- `#import 'external.js'` imports an external JavaScript file.
-- `#create 'newfile.js'` creates and imports a new JavaScript file.
