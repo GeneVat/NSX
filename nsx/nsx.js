@@ -1,12 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
-const { exec } = require('child_process'); // Using built-in module for opening the browser
 
 const nsxFile = path.join(__dirname, '../main.nsx');
 const outputDir = path.join(__dirname, '../output');
-
-let lastMtime = null;
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -16,62 +13,68 @@ const rl = readline.createInterface({
 // Convert .nsx file to HTML, CSS, JS
 function convertNSX() {
   if (!fs.existsSync(nsxFile)) {
-    console.log("main.nsx not found.");
+    console.log("\x1b[31;1m","main.nsx not found.","\x1b[0m");
     return;
   }
 
   const nsxContent = fs.readFileSync(nsxFile, 'utf8');
-  const multiJsStart = "#jss";
-  const multiJsEnd = "#jse";
 
   let htmlContent = "";
   let cssContent = "";
   let jsContent = "";
-  let insideJsBlock = false;
   let extraCssImports = [];
   let extraJsImports = [];
 
   const lines = nsxContent.split('\n');
+  let isFunctionBlock = false;
+  let functionBlockContent = "";
 
   for (let line of lines) {
     const stripped = line.trim();
 
-    // Handle multi-line JS block
-    if (insideJsBlock) {
-      if (stripped.startsWith(multiJsEnd)) {
-        insideJsBlock = false;
-      } else {
-        jsContent += line + "\n";
-      }
+    if (stripped.startsWith("#fn")) {
+      isFunctionBlock = true;
+      functionBlockContent = "function " + stripped.slice("#fn".length).trim() + "\n";
       continue;
     }
 
-    if (stripped === multiJsStart) {
-      insideJsBlock = true;
+    if (stripped.startsWith("#efn")) {
+      isFunctionBlock = false;
+      jsContent += functionBlockContent;
+      functionBlockContent = "";
+      continue;
+    }
+
+    if (isFunctionBlock) {
+      functionBlockContent += line + "\n";
       continue;
     }
 
     if (stripped.startsWith("$")) {
       const raw = stripped.slice(1).trim();
-      const parts = raw.split(" ", 2);
+      const parts = raw.split(" ");
       const firstPart = parts[0];
-      const content = parts[1] || "";
+      const content = parts.slice(1).join(" "); // Join all parts after the first one
       const parts2 = firstPart.split("+");
       const tag = parts2[0];
       let attributes = "";
-
+  
       for (let attr of parts2.slice(1)) {
-        if (attr.includes("=")) {
-          const [key, value] = attr.split("=");
-          attributes += ` ${key}=${value.replace(/\+/g, " ")}`;
-        } else {
-          attributes += ` ${attr}`;
-        }
+          if (attr.includes("=")) {
+              const [key, value] = attr.split("=");
+              attributes += ` ${key}=${value.replace(/\+/g, " ")}`;
+          } else {
+              attributes += ` ${attr}`;
+          }
       }
-
+  
       htmlContent += `<${tag}${attributes}>${content}</${tag}>\n`;
     } else if (stripped.startsWith("%")) {
-      cssContent += stripped.slice(1).trim() + "\n";
+      const content = stripped.slice(1).trim();
+      const firstSpaceIndex = content.indexOf(" ");
+      const selector = content.slice(0, firstSpaceIndex); 
+      const rules = content.slice(firstSpaceIndex + 1).trim(); 
+      cssContent += `${selector} {${rules}}\n`;
     } else if (stripped.startsWith("!")) {
       jsContent += stripped.slice(1).trim() + "\n";
     }
@@ -103,12 +106,11 @@ function convertNSX() {
 
 // Show command help
 function showHelp() {
-  console.log(`
+  console.log("\x1b[34m",`
 Commands:
-o  - Open index.html in browser
-r  - Reload index.html
+r  - Reload files
 q  - Quit the program
-`);
+`,"\x1b[0m");
 }
 
 // Monitor file changes manually (no package required)
@@ -120,7 +122,7 @@ fs.watch(nsxFile, { encoding: 'utf8' }, (eventType, filename) => {
 });
 
 // Start the program
-console.log("NSX started. Press 'h' to show commands.");
+console.log('\x1b[32;1m', 'NSX Compiler Running, Press h for help',"\x1b[0m");
 convertNSX(); // Initial conversion
 
 // Read user input continuously
@@ -130,22 +132,12 @@ rl.on('line', (input) => {
   if (userInput === 'q') {
     rl.close();
     process.exit(0);
-  } else if (userInput === 'o') {
-    // Open in browser using native OS commands
-    const filePath = path.join(outputDir, 'index.html');
-    const platform = process.platform;
-    if (platform === 'win32') {
-      exec(`start ${filePath}`); // For Windows
-    } else if (platform === 'darwin') {
-      exec(`open ${filePath}`); // For macOS
-    } else {
-      exec(`xdg-open ${filePath}`); // For Linux
-    }
   } else if (userInput === 'h') {
     showHelp();
   } else if (userInput === 'r') {
     convertNSX();
+    console.log('\x1b[32m', 'Files updated',"\x1b[0m");
   } else {
-    console.log("Unknown command. Press 'h' for help.");
+    console.log("\x1b[33m","Unknown command. Press 'h' for help.","\x1b[0m");
   }
 });

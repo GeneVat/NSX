@@ -10,21 +10,18 @@
 ## CSS
 
 - Use `%` for CSS rules.
+- {} aren't used for css 
 - Example:
-  - `%body { background-color: #f0f0f0; }` converts to `body { background-color: #f0f0f0; }`
+ `%body font-size:10px;` converts to `body {font-size:10px;}`
 
 ## JavaScript
 
 - Use `!` to denote single-line JS statements.
-  - Example: `!console.log('Hello, World!');` converts to `console.log('Hello, World!');`
+- Example: `!console.log('Hello, World!');` converts to `console.log('Hello, World!');`
 
-### Multi-line JavaScript
+### Functions
 
-Enclose multi-line JS blocks between ```#jss and #jse``` markers:
-``#jss
-console.log('This is a multi-line JS block.');
-console.log('It will be added to script.js');
-#jse``
-converts to:
-console.log('This is a multi-line JS block.');
-console.log('It will be added to script.js');
+- Functions are writen with an open and close tag to have multiple lines.
+- The open tag is `#fn` and the closing tag is `#efn`
+- Write `#fn name() { console.log('Text') }` with `#efn` on the next line 
+  - To output `function name() { console.log('Text') }`

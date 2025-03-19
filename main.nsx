@@ -1,2 +1,2 @@
-#0.4.2
-$p+class="classname1+classname2" texthere
+%p text-align:center; font-size: 30px;
+$p+class="classname1+classname2" This is centered and 30px
