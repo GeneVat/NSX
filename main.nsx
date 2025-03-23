@@ -1,2 +1,7 @@
-%p text-align:center; font-size: 30px;
-$div+class="classname1+classname2" &p+class="classname1+classname2" 'This is centered and 30px in size' &h5 'This is not centered and 30px in size'
+%p {
+    text-align:center; font-size: 30px; 
+}
+$div+class="classname1+classname2" {
+    &p+class="classname1+classname2" 'This is centered and 30px in size' 
+    &h5 'This is not centered and 30px in size' 
+}
