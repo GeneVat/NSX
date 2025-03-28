@@ -14,7 +14,7 @@ To start run `node ./nsx/nsx.js` or `npm run start` with Node.js installed.
 ## CSS
 
 - Use `%` for CSS rules.
-- {} aren't used for css.
+- {} and ; aren't used for css.
 - Example:
   - `%body font-size:10px;` converts to `body {font-size:10px;}`
 

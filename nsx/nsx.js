@@ -82,9 +82,7 @@ function lexer(input) {
         blockType = TokenType.CSS;
         blockContent = content.slice(0, -1).trim();
         blockStartLine = i + 1;
-      } else {
-        tokens.push({ type: TokenType.CSS, value: content, line: i + 1 });
-      }
+      } 
     } else if (stripped.startsWith("!")) {
       tokens.push({ type: TokenType.JS, value: stripped.slice(1).trim(), line: i + 1 });
     } else if (stripped !== "") {
@@ -178,7 +176,7 @@ function parser(tokens) {
 
         case TokenType.CSS:
           if (token.value.includes("{")) {
-            // This is a CSS block that was already processed by the lexer
+            // Handle block CSS (existing functionality)
             const parts = token.value.split(" ");
             const selector = parts[0];
             const rules = parts.slice(1).join(" ");
@@ -189,9 +187,27 @@ function parser(tokens) {
               console.error(`\x1b[31;1mNSX Syntax Error: Invalid CSS rule "${token.value}" at line ${token.line}\x1b[0m`);
               break;
             }
+            
             const selector = cssParts[0];
-            const rules = cssParts.slice(1).join(" ");
-            cssContent += `${selector} {${rules}}\n`;
+            const props = cssParts.slice(1).join(" ");
+            
+            // Process properties (add semicolons)
+            const processedProps = props
+              .split(/(?<=[^;])\s+(?=[a-zA-Z-]+:)/) // Split on space before new property
+              .map(p => p.trim())
+              .filter(p => p.includes(':'))
+              .map(p => {
+                const [key, ...vals] = p.split(':');
+                const value = vals.join(':').trim(); // Handle values with colons
+                return `${key}: ${value}${value.endsWith(';') ? '' : ';'}`;
+              })
+              .join(' ');
+            
+            if (token.noBraces) {
+              cssContent += `${selector} ${processedProps}\n`;
+            } else {
+              cssContent += `${selector} { ${processedProps} }\n`;
+            }
           }
           break;
 
