@@ -1,39 +1,64 @@
 # NSX Guide
 
-To start run `node ./nsx/nsx.js` or `npm run start` with Node.js installed.
+To start, run `npm run start` with Node.js installed.
 
-## HTML
+## HTML Syntax
 
 - Use `$` to denote HTML tags.
-- Example:
-  - `$h1 hi` converts to `<h1>hi</h1>`
-  - `$h1+class="text" hi` converts to `<h1 class="text">hi</h1>`
-- Use `&` to denote a child element.
-- Example:
-  - `div &h1 'texthere' &h1 'hello'` converts to `<div> <h1>texthere</h1> <h2>hello</h2> </div>`
-## CSS
+    - Example: `$h1 hi` converts to `<h1>hi</h1>`
+    - Example: `$h1+class="text" hi` converts to `<h1 class="text">hi</h1>`
+  
+- Use `&` to denote child elements.
+    - Example: `div &h1 'texthere' &h1 'hello'` converts to:
+    ```html
+    <div>
+      <h1>texthere</h1>
+      <h1>hello</h1>
+    </div>
+    ```
 
-- Use `%` for CSS rules.
-- {} aren't used for css.
-- Example:
-  - `%body font-size:10px;` converts to `body {font-size:10px;}`
+### Reusable HTML
 
-## JavaScript
+- Use `!usable-add` to define a reusable HTML block.
+    - Example: `!usable-add hi $h1 Hello` creates a reusable block called `hi` with the HTML Code `$h1 Hello`.
+  
+- Use `!usable-use` to include a reusable HTML block.
+    - Example: `!usable-use hi` will insert the `hi` block.
 
-- Use `!` to denote single-line JS statements.
-- Example:
-  - `!console.log('Hello, World!');` converts to `console.log('Hello, World!');`
+---
 
-### Functions
+## CSS Syntax
 
-- Functions are writen with an open and close tag to have multiple lines.
-- The open tag is `#!` and the closing tag is `#!e`
-- Write `#! name() { console.log('Text') }` with `#!e` on the next line 
-  - To output `function name() { console.log('Text') }`
+- Use `%` for CSS rules (no braces `{}` or semicolons `;` needed).
+    - Example: `%body font-size:10px` converts to:
+    ```css
+    body {
+        font-size: 10px;
+    }
+    ```
 
-## Comments & Multi lines
+---
 
-- Start line with * to add comment 
-- `* This is a comment`
+## JavaScript Syntax
 
-- To have multi-line HTML & CSS use `{}` example Line 1: `$h1 {` Line 2: `Text }` will be processed as `$h1 Text`
+- Use `!` for JavaScript statements.
+    - Example: `!console.log('Hello, World!')` becomes `console.log('Hello, World!')`.
+
+## Comments & Multi-line Syntax
+
+- Start a line with `*` to add a comment.
+    - Example: `* This is a comment` becomes a comment in the output.
+  
+- To write multi-line  use `{}`:
+    - Example for HTML:
+      ```html
+      $h1 {
+        Text
+      }
+      ```
+    - This will be processed as: 
+      ```html
+      <h1>Text</h1>
+      ```
+
+--- 

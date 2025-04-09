@@ -1,7 +1,7 @@
 {
   "name": "nsx",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "scripts": {
-    "start": "node ./nsx/nsx.js"
+    "start": "node ./nsx/nsx"
   }
 }
