@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body {    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    margin: 0;    padding: 2rem;    line-height: 1.6;    background-color: #f9f9f9;    color: #333;}
+h1,h2,h3 {    color: #2c3e50;}
+h1 {    font-size: 2.5rem;    margin-bottom: 0.5rem;}
+h2 {    font-size: 1.8rem;    margin-top: 2rem;}
+h3 {    font-size: 1.4rem;    margin-top: 1.5rem;}
+ul,li {    margin: 0;    padding-left: 1.2rem;    list-style-type: disc;}
+li {    margin-bottom: 0.5rem;}
+code {    background-color: #eee;    padding: 0.2rem 0.5rem;    border-radius: 4px;    font-family: 'Courier New', Courier, monospace;}
+hr {    border: none;    border-top: 1px solid #ccc;    margin: 2rem 0;}
+div {    margin-top: 2rem;    font-style: italic;}
+#t {     font-weight: bold;     color: #2980b9; }
+span {    display: inline-block;    min-width: 80px;}
+@media (max-width: 600px) { body {     padding: 1rem; } h1 {     font-size: 2rem; } h2 {     font-size: 1.5rem; } }
+</style></head><body><h1>NSX Syntax</h1>
+<hr />
+<h2>HTML Syntax</h2>
+<ul><li>Use $ to denote HTML tags.</li><ul><li>Example: $h1 hi converts to &lt;h1&gt;hi&lt;/h1&gt;</li><li>Example: $h1[class="text"] hi converts to &lt;h1 class="text"&gt;hi&lt;/h1&gt;</li><li>You can use parentheses for attributes: $a[href="https://example.com" class="link"] click here</li></ul></ul>
+<li>Use & to denote child elements [outside of parentheses].<li>Example: $div &h1 texthere &h1 hello converts to:</li><code>&lt;div&gt;
+          &lt;h1&gt;texthere&lt;/h1&gt;
+          &lt;h1&gt;hello&lt;/h1&gt;
+      &lt;/div&gt;</code></li>
+<h3>Components [Reusable HTML]</h3>
+<ul><li>Use !add to define a reusable HTML block [component].</li><ul><li>Example: !add hi $h1 Hello creates a component called hi with the HTML $h1 Hello.</li><li>You can use {pass.key} in your component HTML to inject arguments.</li></ul></ul>
+<ul><li>Use !use to include a component, optionally passing arguments.</li><ul><li>Example: !use hi will insert the hi component.</li><li>Example: !use hi[title="Welcome" text="Hello"] will inject arguments into {pass.title} and {pass.text} in the component.</li></ul></ul>
+<hr />
+<h2>CSS Syntax</h2>
+<li>Use % for CSS rules [no braces {} needed].<li>Example: %body = font-size:10px; color:red; converts to:</li><code>body { font-size:10px; color:red; }</code></li>
+<hr />
+<h2>JavaScript Syntax</h2>
+<ul><li>Use ! for JavaScript statements.</li><ul><li>Example: !console.log('Hello, World!') becomes console.log('Hello, World!').</li></ul></ul>
+<hr />
+<h2>Comments</h2>
+<ul><li>Start a line with * to add a comment [ignored].</li><ul><li>Example: * This is a comment</li></ul></ul>
+<hr />
+<h2>File Watching & Commands</h2>
+<ul><li>The compiler watches main.nsx for changes and recompiles automatically.</li><li>Console commands:</li><ul><li>r - Recompile manually</li><li>c - Clear console</li><li>q - Quit</li><li>h - Show help</li><li>l - List output files and open output directory</li></ul></ul>
+<hr />
+<div>Thanks for Reading! Have the time: ‎<span id="t"></span></div>
+<script>setInterval(()=>t.textContent=new Date().toLocaleTimeString(),1000)
+</script></body></html>

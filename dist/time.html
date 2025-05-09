@@ -1,0 +1,9 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style></style></head><body><div>Want to see the time? Here it is: ‎<span id="t"></span></div>
+<button id="counterBtn" onclick="run()">Click Me</button>
+<script>setInterval(() => t.textContent = new Date().toLocaleTimeString(), 1000);
+let count = 0;
+function run() {
+    count++;
+    document.getElementById('counterBtn').textContent = count + ' Click(s)';
+  }
+</script></body></html>

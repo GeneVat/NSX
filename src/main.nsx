@@ -1,0 +1,109 @@
+
+%body {    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    margin: 0;    padding: 2rem;    line-height: 1.6;    background-color: #f9f9f9;    color: #333;}
+
+%h1,h2,h3 {    color: #2c3e50;}
+
+%h1 {    font-size: 2.5rem;    margin-bottom: 0.5rem;}
+
+%h2 {    font-size: 1.8rem;    margin-top: 2rem;}
+
+%h3 {    font-size: 1.4rem;    margin-top: 1.5rem;}
+
+%ul,li {    margin: 0;    padding-left: 1.2rem;    list-style-type: disc;}
+
+%li {    margin-bottom: 0.5rem;}
+
+%code {    background-color: #eee;    padding: 0.2rem 0.5rem;    border-radius: 4px;    font-family: 'Courier New', Courier, monospace;}
+
+%hr {    border: none;    border-top: 1px solid #ccc;    margin: 2rem 0;}
+
+%div {    margin-top: 2rem;    font-style: italic;}
+
+%#t {     font-weight: bold;     color: #2980b9; }
+
+%span {    display: inline-block;    min-width: 80px;}
+
+%@media (max-width: 600px) { body {     padding: 1rem; } h1 {     font-size: 2rem; } h2 {     font-size: 1.5rem; } }
+
+* HTML STARTS
+$h1 NSX Syntax
+
+$hr  
+
+$h2 HTML Syntax
+
+$ul 
+    &li Use #d; to denote HTML tags.
+    &ul
+        &&li Example: #d;h1 hi converts to <h1>hi</h1>
+        &&li Example: #d;h1[class="text"] hi converts to <h1 class="text">hi</h1>
+        &&li You can use parentheses for attributes: #d;a[href="https://example.com" class="link"] click here
+
+$li Use #a; to denote child elements [outside of parentheses].
+    &li Example: #d;div #a;h1 texthere #a;h1 hello converts to:
+    &code
+        <div>
+            <h1>texthere</h1>
+            <h1>hello</h1>
+        </div>
+
+$h3 Components [Reusable HTML]
+
+$ul
+    &li Use !add to define a reusable HTML block [component].
+    &ul
+        &&li Example: !add hi #d;h1 Hello creates a component called hi with the HTML #d;h1 Hello.
+        &&li You can use {pass.key} in your component HTML to inject arguments.
+$ul
+    &li Use !use to include a component, optionally passing arguments.
+    &ul
+        &&li Example: !use hi will insert the hi component.
+        &&li Example: !use hi[title="Welcome" text="Hello"] will inject arguments into {pass.title} and {pass.text} in the component.
+
+$hr
+
+$h2 CSS Syntax
+
+$li Use % for CSS rules [no braces {} needed].
+    &li Example: %body = font-size:10px; color:red; converts to:
+    &code
+        body { font-size:10px; color:red; } 
+
+$hr 
+
+$h2 JavaScript Syntax
+
+$ul
+    &li Use ! for JavaScript statements.
+    &ul
+        &&li Example: !console.log('Hello, World!') becomes console.log('Hello, World!').
+
+$hr
+
+$h2 Comments
+
+$ul
+* Dear Code Reader, You just read a comment in the comment area
+    &li Start a line with * to add a comment [ignored].
+    &ul
+        &&li Example: * This is a comment
+
+$hr
+
+$h2 File Watching #a; Commands
+
+$ul
+    &li The compiler watches main.nsx for changes and recompiles automatically.
+    &li Console commands:
+    &ul
+        &&li r - Recompile manually
+        &&li c - Clear console
+        &&li q - Quit
+        &&li h - Show help
+        &&li l - List output files and open output directory
+
+$hr
+* End of Old Readme 
+
+$div Thanks for Reading! Have the time: ‎ &span[id=t]
+!setInterval(()=>t.textContent=new Date().toLocaleTimeString(),1000)

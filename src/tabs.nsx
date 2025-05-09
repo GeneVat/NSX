@@ -1,0 +1,118 @@
+$title Animated Tabs Page
+%:root {
+      --primary: #6C63FF;
+      --secondary: #FF6584;
+      --accent: #00D1B2;
+      --background: #fdfdfd;
+      --text: #222;
+    }
+
+%* {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+%body {
+      background: var(--background);
+      padding: 2rem;
+      color: var(--text);
+      text-align: center;
+    }
+
+%h1 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+%.tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+%.tab-btn {
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      padding: 1rem 1.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+%.tab-btn:hover {
+      background-color: var(--primary);
+      transform: scale(1.05);
+    }
+
+%.extra-buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+%.anim-btn {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      transition: transform 0.3s ease;
+    }
+
+%.anim-btn:hover {
+      transform: scale(1.1);
+    }
+
+%@keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0,209,178, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(0,209,178, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,209,178, 0); }
+    }
+
+%.tab-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+%.tab-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+$h1 Interactive Tab Page
+
+$div[class="tab-buttons"]
+    &button[class="tab-btn" onclick="showTab('tab1')"] Tab 1
+    &button[class="tab-btn" onclick="showTab('tab2')"] Tab 2
+    &button[class="tab-btn" onclick="showTab('tab3')"] Tab 3
+
+$div[id="tab1" class="tab-content active"]
+    &p This is content for Tab 1. Short and sweet!
+$div[id="tab2" class="tab-content"]
+    &p Tab 2 is now visible. Bright and simple.
+$div[id="tab3" class="tab-content"]
+    &p You're on Tab 3. Just enough animation ✨
+
+$div[class="extra-buttons"]
+    &button[class="anim-btn" onclick="alert('Clicked! 🎉')"] Pulse Button
+    &button[class="anim-btn" onclick="console.log('Doing something cool...')"] Console Log
+    &button[class="anim-btn" onclick="document.body.style.background='#ffe6e6'"] Change BG
+
+!function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+    }
