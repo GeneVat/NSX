@@ -1,1 +1,2 @@
-$h1 I love NSX!
+!hello $h1=class="Hello+h1"
+$hello ++++

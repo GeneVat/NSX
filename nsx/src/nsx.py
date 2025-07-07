@@ -44,7 +44,7 @@ tag_map = {
     '$label': 'label',
     '$fieldset': 'fieldset',
     '$legend': 'legend',
-    '$script': 'script',
+    '@script': 'script',
 }
 
 # Function to preprocess NSX lines by removing spaces inside quotes
@@ -174,7 +174,9 @@ def convert_nsx_to_html(nsx_lines):
 
         output.append(' '.join(result))
 
-    return '\n'.join(output)
+    # Convert remaining '+' to space in the final output
+    final_output = '\n'.join(output).replace('+', ' ')
+    return final_output
 
 # Function to read NSX file and compile it to HTML
 def compile_nsx_to_html(input_file, output_file):
