@@ -1,1 +1,1185 @@
-const _0x31099a=_0x2e05;(function(_0x2ca45d,_0x35a4e9){const _0x479c4d=_0x2e05,_0x44f8f1=_0x2ca45d();while(!![]){try{const _0x17f235=-parseInt(_0x479c4d(0x10d))/0x1*(parseInt(_0x479c4d(0x13a))/0x2)+parseInt(_0x479c4d(0x1c3))/0x3+parseInt(_0x479c4d(0x17d))/0x4+parseInt(_0x479c4d(0x1ba))/0x5*(parseInt(_0x479c4d(0x10a))/0x6)+-parseInt(_0x479c4d(0x167))/0x7*(-parseInt(_0x479c4d(0x1b2))/0x8)+-parseInt(_0x479c4d(0x1d8))/0x9*(-parseInt(_0x479c4d(0x157))/0xa)+parseInt(_0x479c4d(0x11f))/0xb*(-parseInt(_0x479c4d(0x1c4))/0xc);if(_0x17f235===_0x35a4e9)break;else _0x44f8f1['push'](_0x44f8f1['shift']());}catch(_0x1cf5c9){_0x44f8f1['push'](_0x44f8f1['shift']());}}}(_0x1eb3,0xa0237));const https=require('https'),fs=require('fs'),path=require(_0x31099a(0x147)),readline=require(_0x31099a(0x141)),{exec}=require(_0x31099a(0x1cc)),{currentTag=_0x31099a(0x172)}=process[_0x31099a(0x1d1)],VERSION=currentTag,NSX_DIR=path[_0x31099a(0x10b)](__dirname,'../src'),OUTPUT_DIR=path[_0x31099a(0x10b)](__dirname,_0x31099a(0x1b1)),TokenType={'HTML':_0x31099a(0x125),'CSS':_0x31099a(0x1cd),'JS':'JS','EOF':'EOF'},colors={'error':0x1f,'success':0x20,'info':0x22},log=(_0x19197e,_0x519eef)=>console[_0x31099a(0x139)]('\x1b['+colors[_0x19197e]+'m'+_0x519eef+'\x1b[0m');class NSXError extends Error{constructor(_0x35829f,_0x20a1d0=null,_0x350fff=null){const _0x5f0283=_0x31099a;super(_0x5f0283(0x171)+_0x35829f+(_0x20a1d0!==null?_0x5f0283(0x1d9)+_0x20a1d0:'')+(_0x350fff!==null?_0x5f0283(0x124)+_0x350fff:'')),this[_0x5f0283(0x18e)]=_0x20a1d0,this['column']=_0x350fff;}}https[_0x31099a(0x19f)](_0x31099a(0x1b7),{'headers':{'User-Agent':'Node.js'}},_0x3b68c3=>{const _0x738f2c=_0x31099a;let _0x3b6919='';_0x3b68c3['on']('data',_0x398032=>_0x3b6919+=_0x398032),_0x3b68c3['on'](_0x738f2c(0x156),()=>{const _0x1094bf=_0x738f2c,_0x589e0c=JSON['parse'](_0x3b6919)[0x0]?.[_0x1094bf(0x19c)];_0x589e0c&&_0x589e0c>currentTag&&console['log'](_0x1094bf(0x135)+currentTag+_0x1094bf(0x1de)+_0x589e0c+_0x1094bf(0x169)+_0x589e0c);});})['on'](_0x31099a(0x1a6),()=>{});function lex(_0x21a3ea){const _0x5c05e6=_0x31099a,_0x55f962=[],_0x2f36f2=_0x21a3ea['split']('\x0a')['filter'](_0x555052=>(_0x555052=_0x555052['trim']())&&!_0x555052['startsWith']('*')),_0x546486={'$':TokenType[_0x5c05e6(0x125)],'%':TokenType[_0x5c05e6(0x1cd)],'!':TokenType['JS']},_0x17c428=/^([$\%!])\s*(.*)$/;for(let _0x391b3e=0x0;_0x391b3e<_0x2f36f2[_0x5c05e6(0x14c)];){const _0x1b4904=_0x391b3e+0x1,_0x6d316e=_0x2f36f2[_0x391b3e],_0x45a5bb=_0x6d316e[_0x5c05e6(0x144)](),_0x2a6611=_0x6d316e['match'](_0x17c428);if(!_0x45a5bb||_0x45a5bb[_0x5c05e6(0x112)]('*')){_0x391b3e++;continue;}if(_0x2a6611&&_0x546486[_0x2a6611[0x1]]){const _0x6eb20=_0x546486[_0x2a6611[0x1]],_0xa91ea2=_0x2a6611[0x2];let _0x15eb77=_0xa91ea2;const _0x2a2540=_0x1b4904;if(_0x391b3e+0x1<_0x2f36f2[_0x5c05e6(0x14c)]&&(/^\s/[_0x5c05e6(0x1e1)](_0x2f36f2[_0x391b3e+0x1])||_0x2f36f2[_0x391b3e+0x1][_0x5c05e6(0x112)]('\x09'))){_0x15eb77=_0xa91ea2?_0xa91ea2+'\x0a':'';let _0x2f9ae5=_0x391b3e+0x1;while(_0x2f9ae5<_0x2f36f2[_0x5c05e6(0x14c)]&&(/^\s/[_0x5c05e6(0x1e1)](_0x2f36f2[_0x2f9ae5])||_0x2f36f2[_0x2f9ae5][_0x5c05e6(0x112)]('\x09'))){_0x15eb77+=_0x2f36f2[_0x2f9ae5++]['replace'](/^(\t| {1,2})/,'')+'\x0a';}_0x55f962[_0x5c05e6(0x14b)]({'type':_0x6eb20,'value':_0x15eb77[_0x5c05e6(0x186)](),'line':_0x2a2540,'column':0x1}),_0x391b3e=_0x2f9ae5;continue;}else{_0x55f962[_0x5c05e6(0x14b)]({'type':_0x6eb20,'value':_0x15eb77,'line':_0x2a2540,'column':0x1}),_0x391b3e++;continue;}}else{if(_0x45a5bb===_0x5c05e6(0x15a)){_0x391b3e++;continue;}else log('error','Invalid\x20syntax\x20\x22'+_0x45a5bb+_0x5c05e6(0x1af)+_0x1b4904+_0x5c05e6(0x110)),_0x391b3e++;}}return _0x55f962[_0x5c05e6(0x14b)]({'type':TokenType[_0x5c05e6(0x13f)],'value':'','line':_0x2f36f2[_0x5c05e6(0x14c)]+0x1,'column':0x1}),_0x55f962;}function parseHTML(_0x1a294a){const _0xe23a72=_0x31099a;function _0x292fe3(_0x50eb46){const _0x4623b9=_0x2e05,_0x4e7db8={};let _0x1a4829=0x0,_0x7bc72=_0x50eb46[_0x4623b9(0x14c)];while(_0x1a4829<_0x7bc72){while(_0x1a4829<_0x7bc72&&/\s/['test'](_0x50eb46[_0x1a4829]))_0x1a4829++;if(_0x1a4829>=_0x7bc72)break;let _0x5d2bf9='';while(_0x1a4829<_0x7bc72&&/[^\s=]/[_0x4623b9(0x1e1)](_0x50eb46[_0x1a4829]))_0x5d2bf9+=_0x50eb46[_0x1a4829++];while(_0x1a4829<_0x7bc72&&/\s/[_0x4623b9(0x1e1)](_0x50eb46[_0x1a4829]))_0x1a4829++;if(_0x50eb46[_0x1a4829]!=='='){_0x4e7db8[_0x5d2bf9]='',_0x1a4829++;continue;}_0x1a4829++;while(_0x1a4829<_0x7bc72&&/\s/[_0x4623b9(0x1e1)](_0x50eb46[_0x1a4829]))_0x1a4829++;let _0x55a90a='',_0x4f99f4=_0x1a4829;if(_0x50eb46[_0x1a4829]==='\x22'||_0x50eb46[_0x1a4829]==='\x27'){const _0x3f1ad4=_0x50eb46[_0x1a4829++];let _0x2a4829=![];while(_0x1a4829<_0x7bc72){if(_0x50eb46[_0x1a4829]==='\x5c'&&_0x1a4829+0x1<_0x7bc72&&_0x50eb46[_0x1a4829+0x1]===_0x3f1ad4)_0x55a90a+=_0x3f1ad4,_0x1a4829+=0x2;else{if(_0x50eb46[_0x1a4829]===_0x3f1ad4){_0x1a4829++,_0x2a4829=!![];break;}else _0x55a90a+=_0x50eb46[_0x1a4829++];}}if(!_0x2a4829)throw new NSXError('Unclosed\x20quote\x20in\x20attribute\x20value:\x20'+_0x5d2bf9,null,_0x4f99f4+0x1);}else{while(_0x1a4829<_0x7bc72&&/[^\s)]/[_0x4623b9(0x1e1)](_0x50eb46[_0x1a4829]))_0x55a90a+=_0x50eb46[_0x1a4829++];}_0x4e7db8[_0x5d2bf9]=_0x55a90a['replace'](/\+/g,'\x20');}return _0x4e7db8;}function _0x37bb3d(_0x3babbe){const _0x31be41=_0x2e05,_0x55ce9b=_0x3babbe[_0x31be41(0x1c0)](/^([a-zA-Z][a-zA-Z0-9\-_]*)(\[([^\]]*)\])?/);if(!_0x55ce9b)throw new NSXError(_0x31be41(0x164)+_0x3babbe+'\x22',null,0x1);return{'tagName':_0x55ce9b[0x1],'attrs':_0x55ce9b[0x3]?_0x292fe3(_0x55ce9b[0x3]):{}};}const _0x25bbdf=_0x47a51e=>/^(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)$/i[_0xe23a72(0x1e1)](_0x47a51e);function _0x38b12b(_0x214ff7){const _0x331d65=_0xe23a72;return _0x214ff7[_0x331d65(0x163)](/</g,_0x331d65(0x17a))[_0x331d65(0x163)](/>/g,'&gt;')[_0x331d65(0x163)](/#d;/g,'$')['replace'](/#a;/g,'&');}const _0x47ca41=(_0x3f22a5,_0x3cd2b3,_0xa5049)=>'<'+_0x3f22a5+(Object[_0xe23a72(0x162)](_0x3cd2b3)[_0xe23a72(0x14c)]?'\x20'+Object[_0xe23a72(0x162)](_0x3cd2b3)['map'](([_0x16b86a,_0x5e210f])=>_0x16b86a+'=\x22'+_0x5e210f+'\x22')[_0xe23a72(0x10b)]('\x20'):'')+(_0x25bbdf(_0x3f22a5)?'\x20/':'')+'>'+(_0x25bbdf(_0x3f22a5)?'':_0x38b12b(_0xa5049)+('</'+_0x3f22a5+'>'));function _0x118ccb(_0x1033d3){const _0x2d2d86=_0xe23a72;let _0xad17c3=_0x1033d3,_0x59d4c0='';const _0x1a7ed3=_0x1033d3[_0x2d2d86(0x1c0)](/^([a-zA-Z0-9\-_]+(\[[^\]]*\])?)/);_0x1a7ed3&&(_0xad17c3=_0x1a7ed3[0x1],_0x59d4c0=_0x1033d3[_0x2d2d86(0x175)](_0xad17c3['length'])['trim']());const {tagName:_0x57c1a7,attrs:_0x2668ef}=_0x37bb3d(_0xad17c3);return _0x47ca41(_0x57c1a7,_0x2668ef,_0x59d4c0);}function _0x414af2(_0x2c501b){const _0x4df7c5=_0xe23a72,_0x35a2c4=[];let _0x26c65e='',_0x18567f=0x0,_0x138a36=0x0;while(_0x18567f<_0x2c501b[_0x4df7c5(0x14c)]){const _0xe398d=_0x2c501b[_0x18567f];if(_0xe398d==='('){_0x138a36++,_0x26c65e+=_0xe398d,_0x18567f++;continue;}if(_0xe398d===')'){_0x138a36--;if(_0x138a36<0x0)throw new NSXError(_0x4df7c5(0x1d0)+_0x18567f,null,_0x18567f+0x1);_0x26c65e+=_0xe398d,_0x18567f++;continue;}if(_0xe398d==='&'&&_0x138a36===0x0){let _0x5e2be0=0x1;_0x18567f++;while(_0x2c501b[_0x18567f]==='&'){_0x5e2be0++,_0x18567f++;}_0x35a2c4[_0x4df7c5(0x14b)]({'level':_0x5e2be0,'content':_0x26c65e[_0x4df7c5(0x144)]()}),_0x26c65e='';continue;}_0x26c65e+=_0xe398d,_0x18567f++;}if(_0x26c65e['trim']())_0x35a2c4[_0x4df7c5(0x14b)]({'level':0x1,'content':_0x26c65e[_0x4df7c5(0x144)]()});return _0x35a2c4;}const _0x2acc9b=_0x1a294a['startsWith']('$')?_0x1a294a['slice'](0x1)[_0xe23a72(0x144)]():_0x1a294a['trim'](),_0x13e2bf=_0x414af2(_0x2acc9b);if(!_0x13e2bf[_0xe23a72(0x14c)])return'';const _0x2f037b=[];for(const {level:_0x14099a,content:_0x4ea3f9}of _0x13e2bf){try{const _0x30b473=_0x118ccb(_0x4ea3f9);if(_0x2f037b[_0xe23a72(0x14c)]<_0x14099a)_0x2f037b[_0xe23a72(0x14b)](_0x30b473);else{let _0x2cb19b=_0x30b473;while(_0x2f037b['length']>=_0x14099a){const _0x1d657a=_0x2f037b[_0xe23a72(0x1b4)]();_0x2cb19b=_0x1d657a[_0xe23a72(0x163)](/<\/[^>]+>$/,()=>_0x2cb19b+'</'+_0x1d657a[_0xe23a72(0x1c0)](/^<([a-zA-Z0-9\-_]+)/)[0x1]+'>');}_0x2f037b['push'](_0x2cb19b);}}catch(_0x7a0030){log(_0xe23a72(0x1a6),_0x7a0030 instanceof NSXError?_0x7a0030[_0xe23a72(0x14f)]:_0xe23a72(0x17c)+_0x7a0030[_0xe23a72(0x14f)]);}}return _0x2f037b['reduceRight']((_0x97773c,_0x10dfb6)=>_0x10dfb6[_0xe23a72(0x163)](/<\/[^>]+>$/,()=>_0x97773c+'</'+_0x10dfb6[_0xe23a72(0x1c0)](/^<([a-zA-Z0-9\-_]+)/)[0x1]+'>'));}function _0x2e05(_0x32d2ee,_0x193288){const _0x1eb3a4=_0x1eb3();return _0x2e05=function(_0x2e053a,_0x2e5391){_0x2e053a=_0x2e053a-0x105;let _0x43d18b=_0x1eb3a4[_0x2e053a];return _0x43d18b;},_0x2e05(_0x32d2ee,_0x193288);}function parseCSS(_0x4bf7e3){const _0x51cac5=_0x31099a,_0x352fb0=_0x4bf7e3[_0x51cac5(0x163)](/#p;/g,'%'),_0x1c595=_0x352fb0[_0x51cac5(0x144)]();if(_0x1c595['includes']('{')&&_0x1c595[_0x51cac5(0x11b)]('}')&&_0x1c595[_0x51cac5(0x11b)](':'))return _0x352fb0;const _0x585ba2=_0x1c595[_0x51cac5(0x1c9)]('=');if(_0x585ba2!==-0x1){const _0x3de1f8=_0x1c595[_0x51cac5(0x175)](0x0,_0x585ba2)[_0x51cac5(0x144)]();let _0x958b91=_0x1c595['slice'](_0x585ba2+0x1)['trim']();if(_0x352fb0[_0x51cac5(0x11b)]('\x0a'))_0x958b91=_0x352fb0[_0x51cac5(0x18d)]('\x0a')['slice'](0x1)['map'](_0x489300=>_0x489300[_0x51cac5(0x144)]())[_0x51cac5(0x154)](Boolean)[_0x51cac5(0x10b)]('\x20');if(_0x3de1f8&&_0x958b91)return _0x3de1f8+_0x51cac5(0x1b0)+_0x958b91+'\x20}';}const _0x336d36=_0x1c595[_0x51cac5(0x18d)](/\s+/),_0x3b4d2a=_0x336d36[0x0],_0x4ce635=_0x336d36[_0x51cac5(0x175)](0x1);if(!_0x3b4d2a||!_0x4ce635[_0x51cac5(0x14c)])return _0x352fb0;return _0x3b4d2a+_0x51cac5(0x1b0)+_0x4ce635['join']('\x20')+'\x20}';}function parse(_0xb85195){const _0x2c2aed=_0x31099a,_0x1b3dcf={'html':'','css':'','js':''},_0x3751ae=new Map(),_0x1bdf21=/([a-zA-Z0-9_]+)(?:\s*=\s*(?:(['"])(.*?)\2|([^\s"'\]]+)))?/g,_0x1c02de=_0x55fd84=>{const _0x2631de=_0x2e05,_0x2c5817={};let _0x36289f;while(_0x36289f=_0x1bdf21[_0x2631de(0x1b6)](_0x55fd84)){_0x2c5817[_0x36289f[0x1]]=_0x36289f[0x3]!==undefined?_0x36289f[0x3]:_0x36289f[0x4]!==undefined?_0x36289f[0x4]:'';}return _0x1bdf21['lastIndex']=0x0,_0x2c5817;},_0x3e612d=(_0xf7f95f,_0x53055f)=>_0xf7f95f[_0x2c2aed(0x163)](/\{pass\.([a-zA-Z0-9_]+)\}/g,(_0x9c174d,_0x26160e)=>_0x53055f[_0x26160e]!==undefined?_0x53055f[_0x26160e]:'');for(let _0x335ec5=0x0;_0x335ec5<_0xb85195[_0x2c2aed(0x14c)];_0x335ec5++){const _0x2d10fa=_0xb85195[_0x335ec5];try{if(_0x2d10fa['type']===TokenType[_0x2c2aed(0x125)])_0x1b3dcf[_0x2c2aed(0x17e)]+=parseHTML(_0x2d10fa[_0x2c2aed(0x11c)])+'\x0a';else{if(_0x2d10fa['type']===TokenType[_0x2c2aed(0x1cd)])_0x1b3dcf[_0x2c2aed(0x134)]+=parseCSS(_0x2d10fa[_0x2c2aed(0x11c)])+'\x0a';else{if(_0x2d10fa[_0x2c2aed(0x13d)]===TokenType['JS']){const _0x2345d1=_0x2d10fa[_0x2c2aed(0x11c)][_0x2c2aed(0x163)](/#e;/g,'!');if(_0x2345d1[_0x2c2aed(0x112)](_0x2c2aed(0x182))){const _0x693e00=/^add\s+([a-zA-Z0-9_]+)(?:\s*\[([^\]]*)\])?\s*(.*)$/s[_0x2c2aed(0x1b6)](_0x2345d1);if(!_0x693e00)throw new NSXError(_0x2c2aed(0x1bb),_0x2d10fa[_0x2c2aed(0x18e)],0x1);const _0x4b7636=_0x693e00[0x1];let _0x2b230a=_0x693e00[0x3][_0x2c2aed(0x144)]();if(_0x2b230a[_0x2c2aed(0x112)]('$'))_0x2b230a=parseHTML(_0x2b230a);_0x3751ae[_0x2c2aed(0x1a1)](_0x4b7636,{'html':_0x2b230a,'args':_0x693e00[0x2]||''});}else{if(_0x2345d1[_0x2c2aed(0x112)](_0x2c2aed(0x1df))){const _0x31a5ef=/^use\s+([a-zA-Z0-9_]+)(?:\s*\[([^\]]*)\])?/['exec'](_0x2345d1);if(!_0x31a5ef)throw new NSXError(_0x2c2aed(0x150),_0x2d10fa[_0x2c2aed(0x18e)],0x1);const _0x22b38=_0x31a5ef[0x1],_0x37c878=_0x1c02de(_0x31a5ef[0x2]||''),_0x5cc813=_0x3751ae[_0x2c2aed(0x19f)](_0x22b38);if(!_0x5cc813)throw new NSXError(_0x2c2aed(0x133)+_0x22b38+_0x2c2aed(0x14e),_0x2d10fa[_0x2c2aed(0x18e)],0x1);_0x1b3dcf['html']+=_0x3e612d(_0x5cc813['html'],_0x37c878)+'\x0a';}else _0x1b3dcf['js']+=_0x2345d1+'\x0a';}}}}}catch(_0x154e21){log('error',_0x154e21 instanceof NSXError?_0x154e21[_0x2c2aed(0x14f)]:'Parsing\x20Error\x20near\x20line\x20'+(_0x2d10fa?.[_0x2c2aed(0x18e)]||'unknown')+',\x20column\x20'+(_0x2d10fa?.['column']||0x1)+':\x20'+_0x154e21[_0x2c2aed(0x14f)]);}}return _0x1b3dcf;}function transformCSS(_0xd3ad26){const _0x44b2c5=_0x31099a,_0x39af02=[[/text-align-([a-z]+)/g,_0x44b2c5(0x184),_0x8d7a5b=>_0x8d7a5b],[/text-decoration-([a-z]+)/g,'text-decoration',_0x455620=>_0x455620],[/text-transform-([a-z]+)/g,_0x44b2c5(0x116),_0x2a6803=>_0x2a6803],[/text-shadow-([^;]+)/g,_0x44b2c5(0x16e),_0x1e3d56=>_0x1e3d56],[/size-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x1b9),(_0x513856,_0x1d4b14)=>_0x513856+(_0x1d4b14||'px')],[/font-family-([a-zA-Z0-9,\s"'-]+)/g,'font-family',_0x25e720=>_0x25e720],[/font-weight-([a-z0-9]+)/g,_0x44b2c5(0x1da),_0x49df67=>_0x49df67],[/font-style-([a-z]+)/g,'font-style',_0x33cda8=>_0x33cda8],[/line-height-([0-9.]+)/g,_0x44b2c5(0x179),_0x497ec4=>_0x497ec4],[/letter-spacing-([0-9.]+)(px|em|rem)?/g,_0x44b2c5(0x19d),(_0x1a46d0,_0x53843d)=>_0x1a46d0+(_0x53843d||'px')],[/word-spacing-([0-9.]+)(px|em|rem)?/g,_0x44b2c5(0x177),(_0xb8f044,_0x4063b1)=>_0xb8f044+(_0x4063b1||'px')],[/color-([#a-zA-Z0-9]+)/g,_0x44b2c5(0x18a),_0x21cb15=>_0x21cb15],[/background-([#a-zA-Z0-9]+)/g,_0x44b2c5(0x1d4),_0x2e8e30=>_0x2e8e30],[/background-color-([#a-zA-Z0-9]+)/g,_0x44b2c5(0x11a),_0x12147e=>_0x12147e],[/background-image-([^;]+)/g,_0x44b2c5(0x1ca),_0x269ff4=>_0x269ff4],[/background-size-([a-z0-9% ]+)/g,_0x44b2c5(0x12e),_0x213d30=>_0x213d30],[/background-position-([a-z0-9% ]+)/g,_0x44b2c5(0x109),_0x45bb2d=>_0x45bb2d],[/background-repeat-([a-z]+)/g,'background-repeat',_0x3531b0=>_0x3531b0],[/margin-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x15d),(_0x2a3cb1,_0x35e8c2)=>_0x2a3cb1+(_0x35e8c2||'px')],[/margin-top-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x1ae),(_0x520aea,_0x126cbb)=>_0x520aea+(_0x126cbb||'px')],[/margin-right-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x170),(_0x4ccb71,_0x42c62a)=>_0x4ccb71+(_0x42c62a||'px')],[/margin-bottom-([0-9]+)(px|em|rem|%)?/g,'margin-bottom',(_0x4ab17c,_0x17aa13)=>_0x4ab17c+(_0x17aa13||'px')],[/margin-left-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x1aa),(_0x5b098a,_0x42f3b0)=>_0x5b098a+(_0x42f3b0||'px')],[/padding-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x165),(_0x33853f,_0x422582)=>_0x33853f+(_0x422582||'px')],[/padding-top-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x137),(_0x302c46,_0x4de269)=>_0x302c46+(_0x4de269||'px')],[/padding-right-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x193),(_0x3f393f,_0x4540e1)=>_0x3f393f+(_0x4540e1||'px')],[/padding-bottom-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x15f),(_0x22b60f,_0x2339ea)=>_0x22b60f+(_0x2339ea||'px')],[/padding-left-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x12f),(_0x4ad6d9,_0x360e91)=>_0x4ad6d9+(_0x360e91||'px')],[/border-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,'border',(_0x5646a4,_0x2f0dce,_0xfa26e4,_0x3af743)=>''+_0x5646a4+(_0x2f0dce||'px')+'\x20'+_0xfa26e4+'\x20'+_0x3af743],[/border-([0-9]+)(px|em|rem)?/g,_0x44b2c5(0x130),(_0x177aa1,_0x10bb87)=>_0x177aa1+(_0x10bb87||'px')],[/border-style-([a-z]+)/g,_0x44b2c5(0x12d),_0x1c1796=>_0x1c1796],[/border-color-([#a-zA-Z0-9]+)/g,_0x44b2c5(0x12c),_0x1eeaa1=>_0x1eeaa1],[/border-radius-([0-9]+)(px|em|rem)?/g,_0x44b2c5(0x1cf),(_0x5ca74e,_0x33eb4b)=>_0x5ca74e+(_0x33eb4b||'px')],[/width-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x189),(_0x36bd1a,_0x4abc67)=>_0x36bd1a+(_0x4abc67||'px')],[/height-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x1a5),(_0x135ee1,_0xef06d9)=>_0x135ee1+(_0xef06d9||'px')],[/max-width-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x108),(_0x55e01d,_0x11d7d0)=>_0x55e01d+(_0x11d7d0||'px')],[/min-width-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x119),(_0x491840,_0x555c22)=>_0x491840+(_0x555c22||'px')],[/max-height-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x199),(_0xb74fed,_0x5a4590)=>_0xb74fed+(_0x5a4590||'px')],[/min-height-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x1ce),(_0x292416,_0x496e25)=>_0x292416+(_0x496e25||'px')],[/display-([a-z]+)/g,_0x44b2c5(0x178),_0x2a8039=>_0x2a8039],[/flex-direction-([a-z]+)/g,'flex-direction',_0x57f7d7=>_0x57f7d7],[/flex-wrap-([a-z]+)/g,'flex-wrap',_0x37f5d5=>_0x37f5d5],[/justify-content-([a-z-]+)/g,_0x44b2c5(0x1db),_0x549fe1=>_0x549fe1],[/align-items-([a-z-]+)/g,_0x44b2c5(0x15b),_0x498744=>_0x498744],[/align-content-([a-z-]+)/g,'align-content',_0x69011f=>_0x69011f],[/gap-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x192),(_0x31b0ef,_0x5dc453)=>_0x31b0ef+(_0x5dc453||'px')],[/row-gap-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x122),(_0x417d5a,_0x12ae19)=>_0x417d5a+(_0x12ae19||'px')],[/column-gap-([0-9]+)(px|em|rem|%)?/g,'column-gap',(_0x4b378b,_0x13905f)=>_0x4b378b+(_0x13905f||'px')],[/position-([a-z]+)/g,'position',_0x3ae557=>_0x3ae557],[/top-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x1d7),(_0x39320a,_0xa1e018)=>_0x39320a+(_0xa1e018||'px')],[/right-([0-9]+)(px|em|rem|%)?/g,'right',(_0x2b2419,_0x3f63a1)=>_0x2b2419+(_0x3f63a1||'px')],[/bottom-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x173),(_0x5edb2f,_0x213963)=>_0x5edb2f+(_0x213963||'px')],[/left-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x166),(_0x5736fd,_0x4bcd09)=>_0x5736fd+(_0x4bcd09||'px')],[/overflow-([a-z]+)/g,_0x44b2c5(0x153),_0x3aea04=>_0x3aea04],[/overflow-x-([a-z]+)/g,_0x44b2c5(0x180),_0x2d92c5=>_0x2d92c5],[/overflow-y-([a-z]+)/g,'overflow-y',_0x1723f3=>_0x1723f3],[/opacity-([0-9.]+)/g,_0x44b2c5(0x1a7),_0x93685b=>_0x93685b],[/z-index-([0-9]+)/g,_0x44b2c5(0x1c8),_0xc45cc3=>_0xc45cc3],[/cursor-([a-z-]+)/g,_0x44b2c5(0x1cb),_0x48c99e=>_0x48c99e],[/pointer-events-([a-z-]+)/g,_0x44b2c5(0x155),_0x47ecb9=>_0x47ecb9],[/box-shadow-([^;]+)/g,_0x44b2c5(0x16a),_0x15136f=>_0x15136f],[/object-fit-([a-z-]+)/g,_0x44b2c5(0x152),_0x57e3d1=>_0x57e3d1],[/object-position-([a-z0-9% ]+)/g,_0x44b2c5(0x1a3),_0x445f65=>_0x445f65],[/transition-([^;]+)/g,'transition',_0x6caf1e=>_0x6caf1e],[/transform-([^;]+)/g,_0x44b2c5(0x1c2),_0xb4616c=>_0xb4616c],[/animation-([^;]+)/g,_0x44b2c5(0x1ac),_0x361d57=>_0x361d57],[/size-([0-9]+)(px|em|rem)?/g,_0x44b2c5(0x1b9),(_0x531608,_0x24f3f2)=>_0x531608+(_0x24f3f2||'px')],[/weight-([a-z0-9]+)/g,'font-weight',_0x22554f=>_0x22554f],[/mawidth-([0-9]+)(px|em|rem|%)?/g,'max-width',(_0x457d26,_0x263937)=>_0x457d26+(_0x263937||'px')],[/miheight-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x1ce),(_0x55e50b,_0xd83d61)=>_0x55e50b+(_0xd83d61||'px')],[/border-top-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,_0x44b2c5(0x183),(_0x442d03,_0x175ff9,_0x4f244d,_0x17b514)=>''+_0x442d03+(_0x175ff9||'px')+'\x20'+_0x4f244d+'\x20'+_0x17b514],[/border-right-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,'border-right',(_0x55bbe5,_0x515433,_0x281069,_0x37d858)=>''+_0x55bbe5+(_0x515433||'px')+'\x20'+_0x281069+'\x20'+_0x37d858],[/border-bottom-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,'border-bottom',(_0x466b78,_0x2711ec,_0x591f6a,_0x5ee8b0)=>''+_0x466b78+(_0x2711ec||'px')+'\x20'+_0x591f6a+'\x20'+_0x5ee8b0],[/border-left-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,_0x44b2c5(0x1c7),(_0x44b4e0,_0x2ae4d2,_0x18b828,_0x28ce76)=>''+_0x44b4e0+(_0x2ae4d2||'px')+'\x20'+_0x18b828+'\x20'+_0x28ce76],[/border-top-left-radius-([0-9]+)(px|em|rem)?/g,'border-top-left-radius',(_0x12a661,_0x49b6e2)=>_0x12a661+(_0x49b6e2||'px')],[/border-top-right-radius-([0-9]+)(px|em|rem)?/g,'border-top-right-radius',(_0xeb0e46,_0x30d755)=>_0xeb0e46+(_0x30d755||'px')],[/border-bottom-left-radius-([0-9]+)(px|em|rem)?/g,_0x44b2c5(0x17b),(_0x50fd35,_0x266153)=>_0x50fd35+(_0x266153||'px')],[/border-bottom-right-radius-([0-9]+)(px|em|rem)?/g,'border-bottom-right-radius',(_0x5c2980,_0x357ffe)=>_0x5c2980+(_0x357ffe||'px')],[/outline-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,_0x44b2c5(0x191),(_0xf905d3,_0x5b9cf1,_0x18106a,_0x375d79)=>''+_0xf905d3+(_0x5b9cf1||'px')+'\x20'+_0x18106a+'\x20'+_0x375d79],[/text-shadow-([a-zA-Z0-9# ,.-]+)/g,_0x44b2c5(0x16e),_0x489d8d=>_0x489d8d],[/filter-([^;]+)/g,_0x44b2c5(0x154),_0x5f3273=>_0x5f3273],[/clip-path-([^;]+)/g,'clip-path',_0x1df080=>_0x1df080],[/visibility-([a-z]+)/g,_0x44b2c5(0x160),_0x3331d4=>_0x3331d4],[/user-select-([a-z]+)/g,_0x44b2c5(0x18b),_0x27b024=>_0x27b024],[/white-space-([a-z]+)/g,'white-space',_0x5e7671=>_0x5e7671],[/list-style-([a-z]+)/g,_0x44b2c5(0x120),_0xb1076a=>_0xb1076a],[/float-([a-z]+)/g,_0x44b2c5(0x19b),_0x53facd=>_0x53facd],[/clear-([a-z]+)/g,_0x44b2c5(0x146),_0x25790d=>_0x25790d],[/vertical-align-([a-z]+)/g,_0x44b2c5(0x140),_0x15fd85=>_0x15fd85],[/direction-([a-z]+)/g,'direction',_0xe14ca6=>_0xe14ca6],[/resize-([a-z]+)/g,_0x44b2c5(0x111),_0x2a1d47=>_0x2a1d47],[/scroll-behavior-([a-z]+)/g,'scroll-behavior',_0x915681=>_0x915681],[/scroll-snap-type-([a-z]+)/g,_0x44b2c5(0x1dd),_0x67b838=>_0x67b838],[/will-change-([a-z-]+)/g,'will-change',_0x24087b=>_0x24087b],[/aspect-ratio-([0-9]+)\/([0-9]+)/g,_0x44b2c5(0x17f),(_0x4e95df,_0x3ff54e)=>_0x4e95df+'/'+_0x3ff54e],[/columns-([0-9]+)/g,'columns',_0x1a0b3b=>_0x1a0b3b],[/column-gap-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x105),(_0x490981,_0x2795f5)=>_0x490981+(_0x2795f5||'px')],[/order-([0-9]+)/g,'order',_0x45e76f=>_0x45e76f],[/grid-template-columns-([^;]+)/g,'grid-template-columns',_0x21d5c0=>_0x21d5c0],[/grid-template-rows-([^;]+)/g,_0x44b2c5(0x1a4),_0x149c23=>_0x149c23],[/grid-gap-([0-9]+)(px|em|rem|%)?/g,_0x44b2c5(0x10e),(_0x13428d,_0x39407c)=>_0x13428d+(_0x39407c||'px')],[/transition-delay-([0-9.]+)(s|ms)?/g,'transition-delay',(_0x2cfd3f,_0x451e82)=>_0x2cfd3f+(_0x451e82||'s')],[/transition-duration-([0-9.]+)(s|ms)?/g,_0x44b2c5(0x187),(_0x3f83ff,_0x26c166)=>_0x3f83ff+(_0x26c166||'s')],[/transition-timing-function-([a-z-]+)/g,_0x44b2c5(0x127),_0x23c981=>_0x23c981],[/animation-delay-([0-9.]+)(s|ms)?/g,'animation-delay',(_0x17f2c1,_0x2ca4b1)=>_0x17f2c1+(_0x2ca4b1||'s')],[/animation-duration-([0-9.]+)(s|ms)?/g,'animation-duration',(_0x2b6bf1,_0x471305)=>_0x2b6bf1+(_0x471305||'s')],[/animation-timing-function-([a-z-]+)/g,_0x44b2c5(0x114),_0x1aa768=>_0x1aa768],[/perspective-([0-9]+)(px|em|rem|%)?/g,'perspective',(_0x34ebe8,_0x5a52ce)=>_0x34ebe8+(_0x5a52ce||'px')],[/backface-visibility-([a-z]+)/g,_0x44b2c5(0x1a9),_0xc3163f=>_0xc3163f],[/outline-offset-([0-9]+)(px|em|rem)?/g,_0x44b2c5(0x16c),(_0x56e74f,_0x40e5c3)=>_0x56e74f+(_0x40e5c3||'px')],[/tab-size-([0-9]+)/g,_0x44b2c5(0x118),_0x265d16=>_0x265d16],[/font-variant-([a-z-]+)/g,_0x44b2c5(0x1b3),_0x4c71e4=>_0x4c71e4],[/font-stretch-([a-z-]+)/g,_0x44b2c5(0x149),_0x221a94=>_0x221a94],[/isolation-([a-z]+)/g,_0x44b2c5(0x136),_0x4bfc3e=>_0x4bfc3e],[/mix-blend-mode-([a-z-]+)/g,_0x44b2c5(0x1d6),_0x1f34b9=>_0x1f34b9],[/pointer-events-([a-z-]+)/g,'pointer-events',_0x2b4650=>_0x2b4650],[/blur-([0-9]+)(px|em|rem)?/g,_0x44b2c5(0x154),(_0xc8e668,_0x190333)=>_0x44b2c5(0x194)+_0xc8e668+(_0x190333||'px')+')'],[/drop-shadow-([^;]+)/g,_0x44b2c5(0x154),_0x54741c=>'drop-shadow('+_0x54741c+')'],[/grayscale-([0-9.]+)/g,'filter',_0x4b0cf3=>'grayscale('+_0x4b0cf3+')'],[/sepia-([0-9.]+)/g,_0x44b2c5(0x154),_0x50d86d=>'sepia('+_0x50d86d+')'],[/invert-([0-9.]+)/g,'filter',_0x50cd53=>'invert('+_0x50cd53+')'],[/saturate-([0-9.]+)/g,'filter',_0x2c2e3f=>_0x44b2c5(0x11d)+_0x2c2e3f+')'],[/hue-rotate-([0-9.]+)deg/g,_0x44b2c5(0x154),_0x3a69f4=>_0x44b2c5(0x1b5)+_0x3a69f4+_0x44b2c5(0x1b8)],[/brightness-([0-9.]+)/g,'filter',_0x530deb=>_0x44b2c5(0x1a0)+_0x530deb+')'],[/contrast-([0-9.]+)/g,'filter',_0x174f18=>_0x44b2c5(0x10c)+_0x174f18+')'],[/keyframes-([a-zA-Z0-9_-]+)\s*=\s*([^@]+)/g,'@keyframes',(_0x947585,_0x297031)=>_0x947585+_0x44b2c5(0x1b0)+_0x297031[_0x44b2c5(0x144)]()+'\x20}'],[/keyframes-([a-zA-Z0-9_-]+)\s*\{([^}]*)\}/g,_0x44b2c5(0x198),(_0x1bcdd6,_0x24c2aa)=>_0x1bcdd6+_0x44b2c5(0x1b0)+_0x24c2aa[_0x44b2c5(0x144)]()+'\x20}']];for(const [_0xf1b0d5,_0x2b921d,_0x5b49b7]of _0x39af02){_0xd3ad26=_0xd3ad26[_0x44b2c5(0x163)](_0xf1b0d5,function(..._0xd36996){const _0xcbb2e8=_0x44b2c5;if(typeof _0x2b921d===_0xcbb2e8(0x1a8)&&_0x2b921d[_0xcbb2e8(0x112)]('@keyframes'))return _0xcbb2e8(0x181)+_0x5b49b7(..._0xd36996[_0xcbb2e8(0x175)](0x1,-0x2));if(_0x2b921d==='filter'){const _0x238c18=_0x5b49b7(..._0xd36996[_0xcbb2e8(0x175)](0x1,-0x2));return _0xcbb2e8(0x14d)+_0x238c18+';';}return _0x2b921d+':\x20'+_0x5b49b7(..._0xd36996[_0xcbb2e8(0x175)](0x1,-0x2))+';';});}return _0xd3ad26;}function getNsxFiles(){const _0x2f45b3=_0x31099a;return fs[_0x2f45b3(0x1bc)](NSX_DIR)['filter'](_0x5ce4fc=>_0x5ce4fc[_0x2f45b3(0x1bd)]('.nsx'))[_0x2f45b3(0x1d3)](_0x326a97=>path[_0x2f45b3(0x10b)](NSX_DIR,_0x326a97));}async function compileAll(){const _0x215fef=_0x31099a;fs['existsSync'](OUTPUT_DIR)&&fs[_0x215fef(0x13e)](OUTPUT_DIR,{'recursive':!![],'force':!![]});await fs['promises'][_0x215fef(0x158)](OUTPUT_DIR,{'recursive':!![]});const _0x3efc7c=getNsxFiles();let _0x36c1e0=!![];for(const _0x1e4d82 of _0x3efc7c){try{await fs[_0x215fef(0x168)][_0x215fef(0x15c)](_0x1e4d82,fs[_0x215fef(0x19a)]['F_OK']);}catch{log(_0x215fef(0x1a6),path['basename'](_0x1e4d82)+_0x215fef(0x1c1)),_0x36c1e0=![];continue;}try{const _0x28293b=await fs[_0x215fef(0x168)][_0x215fef(0x1e0)](_0x1e4d82,_0x215fef(0x1c6)),_0x517b9b=lex(_0x28293b),_0x8ed599=parse(_0x517b9b),_0x548180=_0x28293b[_0x215fef(0x18d)]('\x0a')[_0x215fef(0x1ad)](_0x432ed6=>_0x432ed6[_0x215fef(0x11b)](_0x215fef(0x15a)));if(_0x548180)_0x8ed599[_0x215fef(0x134)]=transformCSS(_0x8ed599[_0x215fef(0x134)]);const {html:_0xd18919,css:_0x28d7b4,js:_0x18f17d}=_0x8ed599;let _0x334473;if(path[_0x215fef(0x15e)](_0x1e4d82)===_0x215fef(0x188))_0x334473=path['join'](OUTPUT_DIR,_0x215fef(0x132));else{const _0x23332c=path[_0x215fef(0x15e)](_0x1e4d82,_0x215fef(0x145));_0x334473=path[_0x215fef(0x10b)](OUTPUT_DIR,_0x23332c+_0x215fef(0x106));}const _0x2609dd=_0x215fef(0x1be)+_0x28d7b4+_0x215fef(0x159)+_0xd18919+_0x215fef(0x115)+_0x18f17d+_0x215fef(0x148);let _0x531945='';try{_0x531945=await fs['promises'][_0x215fef(0x1e0)](_0x334473,'utf8');}catch{}if(_0x531945!==_0x2609dd)await fs[_0x215fef(0x168)][_0x215fef(0x18f)](_0x334473,_0x2609dd);}catch(_0x33ca78){let _0x2803de='';try{const _0xbcb4f6=await fs[_0x215fef(0x168)]['readFile'](_0x1e4d82,_0x215fef(0x1c6)),_0x5ac379=_0x33ca78[_0x215fef(0x18e)]||_0x33ca78 instanceof NSXError&&_0x33ca78['line']||null;if(_0x5ac379){const _0x593a00=_0xbcb4f6[_0x215fef(0x18d)]('\x0a'),_0x523740=Math['max'](0x0,_0x5ac379-0x2),_0x1cd290=Math[_0x215fef(0x1c5)](_0x593a00[_0x215fef(0x14c)],_0x5ac379+0x1);_0x2803de='\x0a'+_0x593a00[_0x215fef(0x175)](_0x523740,_0x1cd290)[_0x215fef(0x1d3)]((_0xc1d1be,_0x59631c)=>{const _0xaefabf=_0x215fef,_0x21cf36=_0x523740+_0x59631c+0x1;return(_0x21cf36===_0x5ac379?'>>\x20':_0xaefabf(0x121))+_0x21cf36+':\x20'+_0xc1d1be;})[_0x215fef(0x10b)]('\x0a');}}catch{}log('error','Compilation\x20failed\x20for\x20'+path[_0x215fef(0x15e)](_0x1e4d82)+_0x215fef(0x1d5)+_0x1e4d82+':\x20'+_0x33ca78['message']+_0x2803de);if(_0x33ca78['stack'])console[_0x215fef(0x1a6)](_0x33ca78[_0x215fef(0x174)]);_0x36c1e0=![];}}return _0x36c1e0;}const showHelp=()=>log(_0x31099a(0x1a2),_0x31099a(0x126)+OUTPUT_DIR+_0x31099a(0x143));function listOutputFiles(){const _0x4d0954=_0x31099a;if(!fs[_0x4d0954(0x13c)](OUTPUT_DIR))return log(_0x4d0954(0x1a6),_0x4d0954(0x113)+OUTPUT_DIR);try{const _0x4f0bb5=fs[_0x4d0954(0x1bc)](OUTPUT_DIR,{'withFileTypes':!![]});_0x4f0bb5['length']?(log('info',_0x4d0954(0x1ab)),_0x4f0bb5[_0x4d0954(0x117)](_0x53d12b=>{const _0x1069be=_0x4d0954;if(_0x53d12b['isDirectory']()){const _0x49a174=fs[_0x1069be(0x1bc)](path[_0x1069be(0x10b)](OUTPUT_DIR,_0x53d12b['name']));_0x49a174[_0x1069be(0x117)](_0x237a1a=>console['log']('-\x20'+_0x53d12b[_0x1069be(0x19c)]+'/'+_0x237a1a));}else console[_0x1069be(0x139)]('-\x20'+_0x53d12b[_0x1069be(0x19c)]);})):log(_0x4d0954(0x1a2),'No\x20files\x20found\x20in\x20output\x20directory:\x20'+OUTPUT_DIR);const _0xa2cda2={'darwin':_0x4d0954(0x19e)+OUTPUT_DIR+'\x22','win32':_0x4d0954(0x123)+OUTPUT_DIR+'\x22','linux':_0x4d0954(0x129)+OUTPUT_DIR+'\x22'},_0x1ac58a=_0xa2cda2[process[_0x4d0954(0x161)]];if(!_0x1ac58a)return log(_0x4d0954(0x1a6),_0x4d0954(0x131));log(_0x4d0954(0x1a2),'Attempting\x20to\x20open\x20directory:\x20'+OUTPUT_DIR+_0x4d0954(0x16b)),exec(_0x1ac58a,(_0x495e49,_0x3f9408,_0x2e7d6f)=>{const _0x4412d9=_0x4d0954;if(_0x495e49)return log('error',_0x4412d9(0x10f)+_0x495e49[_0x4412d9(0x14f)]),log(_0x4412d9(0x1a6),'stderr:\x20'+_0x2e7d6f);if(_0x2e7d6f)log('info',_0x4412d9(0x1bf)+_0x2e7d6f);log(_0x4412d9(0x1a2),_0x4412d9(0x1dc));});}catch(_0x1a0dd3){log(_0x4d0954(0x1a6),'Error\x20listing\x20or\x20opening\x20output\x20directory:\x20'+_0x1a0dd3[_0x4d0954(0x14f)]);}}const rl=readline[_0x31099a(0x138)]({'input':process['stdin'],'output':process[_0x31099a(0x12a)],'prompt':'>\x20'});console[_0x31099a(0x146)](),log(_0x31099a(0x176),'NSX\x20Started.'),log(_0x31099a(0x1a2),_0x31099a(0x190));const promptCompiler=()=>rl[_0x31099a(0x13b)]();async function handleCompile(_0x4205e2=![]){const _0x35c5a8=_0x31099a;if(!await compileAll())log(_0x35c5a8(0x1a6),_0x4205e2?'Manual\x20recompilation\x20failed.':_0x35c5a8(0x128));promptCompiler();}handleCompile();let debounceTimer=null,watchedFiles=new Set();function watchFileIfNeeded(_0x1db45b){const _0x204411=_0x31099a;if(!watchedFiles[_0x204411(0x16d)](_0x1db45b))try{fs[_0x204411(0x197)](_0x1db45b,{'persistent':!![]},_0x4589d0=>{const _0x46c5be=_0x204411;_0x4589d0===_0x46c5be(0x142)&&(clearTimeout(debounceTimer),debounceTimer=setTimeout(()=>{handleCompile();},0xc8));}),watchedFiles[_0x204411(0x16f)](_0x1db45b);}catch{}}const watchFiles=()=>{const _0x255888=_0x31099a;fs[_0x255888(0x197)](NSX_DIR,{'persistent':!![]},(_0x580f32,_0x1470b0)=>{const _0x3c2875=_0x255888;_0x1470b0&&_0x1470b0[_0x3c2875(0x1bd)](_0x3c2875(0x145))&&(getNsxFiles()[_0x3c2875(0x117)](watchFileIfNeeded),clearTimeout(debounceTimer),debounceTimer=setTimeout(()=>{handleCompile();},0xc8));}),getNsxFiles()['forEach'](watchFileIfNeeded),setInterval(()=>{const _0x55c87b=_0x255888;getNsxFiles()[_0x55c87b(0x117)](watchFileIfNeeded);},0x3e8);};watchFiles();const commands={'q':()=>{const _0x20a3f8=_0x31099a;rl[_0x20a3f8(0x18c)](),process[_0x20a3f8(0x196)](0x0);},'exit':()=>{const _0x378452=_0x31099a;rl[_0x378452(0x18c)](),process[_0x378452(0x196)](0x0);},'h':showHelp,'help':showHelp,'r':()=>{const _0x2d4b27=_0x31099a;log(_0x2d4b27(0x1a2),_0x2d4b27(0x185)),handleCompile(!![]);},'recompile':()=>{const _0x1a499b=_0x31099a;log(_0x1a499b(0x1a2),_0x1a499b(0x185)),handleCompile(!![]);},'c':()=>{const _0x43d257=_0x31099a;console[_0x43d257(0x146)](),log(_0x43d257(0x176),_0x43d257(0x107)),log(_0x43d257(0x1a2),'Watching\x20all\x20.nsx\x20files\x20in\x20'+NSX_DIR+_0x43d257(0x195)),log('info',_0x43d257(0x190)),promptCompiler();},'clear':()=>{const _0x4d4542=_0x31099a;console[_0x4d4542(0x146)](),log(_0x4d4542(0x176),_0x4d4542(0x107)),log(_0x4d4542(0x1a2),_0x4d4542(0x14a)+NSX_DIR+'\x20for\x20changes.'),log(_0x4d4542(0x1a2),_0x4d4542(0x190)),promptCompiler();},'l':()=>{listOutputFiles(),promptCompiler();},'list':()=>{listOutputFiles(),promptCompiler();},'v':()=>{const _0x322359=_0x31099a;log('info',_0x322359(0x1d2)+VERSION),promptCompiler();},'version':()=>{const _0x4d94fb=_0x31099a;log(_0x4d94fb(0x1a2),_0x4d94fb(0x1d2)+VERSION),promptCompiler();}};function _0x1eb3(){const _0x160233=['grid-gap','Failed\x20to\x20open\x20directory:\x20',',\x20column\x201','resize','startsWith','Output\x20directory\x20does\x20not\x20exist:\x20','animation-timing-function','<script>','text-transform','forEach','tab-size','min-width','background-color','includes','value','saturate(','\x22.\x20Press\x20\x27h\x27\x20for\x20help.','5104pQdbjk','list-style','\x20\x20\x20','row-gap','start\x20\x22\x22\x20\x22',',\x20column\x20','HTML','\x0aNSX\x20Commands:\x0a\x20\x20r\x20\x20-\x20Recompile\x20all\x20.nsx\x20files\x20in\x20../\x0a\x20\x20c\x20\x20-\x20Clear\x20console\x0a\x20\x20q\x20\x20-\x20Quit\x20the\x20program\x0a\x20\x20h\x20\x20-\x20Show\x20this\x20help\x20menu\x0a\x20\x20l\x20\x20-\x20List\x20output\x20files\x20and\x20attempt\x20to\x20open\x20the\x20output\x20directory\x20(','transition-timing-function','Compilation\x20failed.','xdg-open\x20\x22','stdout','Unknown\x20command:\x20\x22','border-color','border-style','background-size','padding-left','border-width','Unsupported\x20platform\x20for\x20opening\x20directory\x20automatically.','index.html','Component\x20\x22','css','NSX\x20(','isolation','padding-top','createInterface','log','11482GfwEkv','prompt','existsSync','type','rmSync','EOF','vertical-align','readline','change',')\x0a\x20\x20v\x20\x20-\x20Show\x20NSX\x20version\x0a','trim','.nsx','clear','path','</script></body></html>','font-stretch','Watching\x20all\x20.nsx\x20files\x20in\x20','push','length','filter:\x20','\x22\x20used\x20before\x20definition','message','Invalid\x20use\x20syntax','toLowerCase','object-fit','overflow','filter','pointer-events','end','10AuIyxA','mkdir','</style></head><body>','#C2','align-items','access','margin','basename','padding-bottom','visibility','platform','entries','replace','Invalid\x20tag\x20name\x20in\x20\x22','padding','left','218771GxeBZk','promises','\x20on\x20Github.com/GeneVat/NSX/releases/tag/','box-shadow','...','outline-offset','has','text-shadow','add','margin-right','NSX\x20Error:\x20','v0.6.0','bottom','stack','slice','success','word-spacing','display','line-height','&lt;','border-bottom-left-radius','HTML\x20Parsing\x20Error:\x20','3048312dtGHuK','html','aspect-ratio','overflow-x','@keyframes\x20','add\x20','border-top','text-align','Manual\x20recompilation\x20requested...','trimEnd','transition-duration','main.nsx','width','color','user-select','close','split','line','writeFile','Press\x20\x27h\x27\x20for\x20help.','outline','gap','padding-right','blur(','\x20for\x20changes.','exit','watch','@keyframes','max-height','constants','float','name','letter-spacing','open\x20\x22','get','brightness(','set','info','object-position','grid-template-rows','height','error','opacity','string','backface-visibility','margin-left','Output\x20files:','animation','some','margin-top','\x22\x20at\x20line\x20','\x20{\x20','../dist','128zwYIMB','font-variant','pop','hue-rotate(','exec','https://api.github.com/repos/GeneVat/NSX/tags','deg)','font-size','15125arTbca','Invalid\x20add\x20syntax','readdirSync','endsWith','<!DOCTYPE\x20html><html><head><meta\x20charset=\x22utf-8\x22><meta\x20name=\x22viewport\x22\x20content=\x22width=device-width,\x20initial-scale=1\x22><style>','Open\x20command\x20stderr:\x20','match','\x20not\x20found.','transform','1232772AVzzhd','45444tmaEhj','min','utf8','border-left','z-index','indexOf','background-image','cursor','child_process','CSS','min-height','border-radius','Unbalanced\x20parentheses\x20in\x20HTML\x20block\x20at\x20position\x20','env','NSX\x20version:\x20','map','background','\x20in\x20file:\x20','mix-blend-mode','top','8922573wkdAKG','\x20at\x20line\x20','font-weight','justify-content','Directory\x20should\x20be\x20open.','scroll-snap-type',')\x20is\x20outdated.\x20Update\x20to\x20','use\x20','readFile','test','column-gap','.html','NSX\x20Running.','max-width','background-position','606SYUYwl','join','contrast(','97hXokTo'];_0x1eb3=function(){return _0x160233;};return _0x1eb3();}rl['on']('line',_0x50477d=>{const _0xd39413=_0x31099a,_0x5670d3=_0x50477d[_0xd39413(0x144)]()[_0xd39413(0x151)]();if(commands[_0x5670d3])commands[_0x5670d3]();else log(_0xd39413(0x1a2),_0xd39413(0x12b)+_0x50477d[_0xd39413(0x144)]()+_0xd39413(0x11e)),promptCompiler();})['on'](_0x31099a(0x18c),()=>{process['exit'](0x0);});
+const https = require('https'), fs = require('fs'), path = require('path'), readline = require('readline'), {exec} = require('child_process'), {
+        currentTag = 'v0.6.0'
+    } = process.env, VERSION = currentTag, NSX_DIR = path.join(__dirname, '../src'), OUTPUT_DIR = path.join(__dirname, '../dist'), TokenType = {
+        'HTML': 'HTML',
+        'CSS': 'CSS',
+        'JS': 'JS',
+        'EOF': 'EOF'
+    }, colors = {
+        'error': 31,
+        'success': 32,
+        'info': 34
+    }, log = (type, message) => console.log('\x1B[' + colors[type] + 'm' + message + '\x1B[0m');
+class NSXError extends Error {
+    constructor(message, line = null, column = null) {
+        super('NSX Error: ' + message + (line !== null ? ' at line ' + line : '') + (column !== null ? ', column ' + column : ''));
+        this.line = line;
+        this.column = column;
+    }
+}
+https.get('https://api.github.com/repos/GeneVat/NSX/tags', { 'headers': { 'User-Agent': 'Node.js' } }, response => {
+    let rawData = '';
+    response.on('data', chunk => rawData += chunk);
+    response.on('end', () => {
+        const latestTag = JSON.parse(rawData)[0]?.name;
+        latestTag && latestTag > currentTag && console.log('NSX (' + currentTag + ') is outdated. Update to ' + latestTag + ' on Github.com/GeneVat/NSX/releases/tag/' + latestTag);
+    });
+}).on('error', () => {
+});
+function lex(inputContent) {
+    const tokens = [], lines = inputContent.split('\n').filter(line => (line = line.trim()) && !line.startsWith('*')), tokenTypeMap = {
+            '$': TokenType.HTML,
+            '%': TokenType.CSS,
+            '!': TokenType.JS
+        };
+    for (let i = 0; i < lines.length;) {
+        const lineNumber = i + 1, currentLine = lines[i], trimmedLine = currentLine.trim(), lineMatch = currentLine.match(/^([$\%!])\s*(.*)$/);
+        if (!trimmedLine || trimmedLine.startsWith('*')) {
+            i++;
+            continue;
+        }
+        if (lineMatch && tokenTypeMap[lineMatch[1]]) {
+            const tokenType = tokenTypeMap[lineMatch[1]], initialValue = lineMatch[2];
+            let valueContent = initialValue;
+            const startLine = lineNumber;
+            if (i + 1 < lines.length && (/^\s/.test(lines[i + 1]) || lines[i + 1].startsWith('\t'))) {
+                valueContent = initialValue ? initialValue + '\n' : '';
+                let nextLineIndex = i + 1;
+                while (nextLineIndex < lines.length && (/^\s/.test(lines[nextLineIndex]) || lines[nextLineIndex].startsWith('\t'))) {
+                    valueContent += lines[nextLineIndex++].replace(/^(\t| {1,2})/, '') + '\n';
+                }
+                tokens.push({
+                    'type': tokenType,
+                    'value': valueContent.trimEnd(),
+                    'line': startLine,
+                    'column': 1
+                });
+                i = nextLineIndex;
+                continue;
+            } else {
+                tokens.push({
+                    'type': tokenType,
+                    'value': valueContent,
+                    'line': startLine,
+                    'column': 1
+                });
+                i++;
+                continue;
+            }
+        } else {
+            if (trimmedLine === '#C2') {
+                i++;
+                continue;
+            } else {
+                log('error', 'Invalid syntax "' + trimmedLine + '" at line ' + lineNumber + ', column 1');
+                i++;
+            }
+        }
+    }
+    return tokens.push({
+        'type': TokenType.EOF,
+        'value': '',
+        'line': lines.length + 1,
+        'column': 1
+    }), tokens;
+}
+function parseHTML(htmlContent) {
+    function parseAttributes(attrString) {
+        const attributes = {};
+        let i = 0, len = attrString.length;
+        while (i < len) {
+            while (i < len && /\s/.test(attrString[i])) {
+                i++;
+            }
+            if (i >= len) {
+                break;
+            }
+            let attrName = '';
+            while (i < len && /[^\s=]/.test(attrString[i])) {
+                attrName += attrString[i++];
+            }
+            while (i < len && /\s/.test(attrString[i])) {
+                i++;
+            }
+            if (attrString[i] !== '=') {
+                i++;
+                continue;
+            }
+            i++;
+            while (i < len && /\s/.test(attrString[i])) {
+                i++;
+            }
+            let attrValue = '', valueStartPos = i;
+            if (attrString[i] === '"' || attrString[i] === '\'') {
+                const quoteChar = attrString[i++];
+                let hasClosedQuote = false;
+                while (i < len) {
+                    if (attrString[i] === '\\' && i + 1 < len && attrString[i + 1] === quoteChar) {
+                        attrValue += quoteChar;
+                        i += 2;
+                    } else {
+                        if (attrString[i] === quoteChar) {
+                            i++;
+                            hasClosedQuote = true;
+                            break;
+                        } else {
+                            attrValue += attrString[i++];
+                        }
+                    }
+                }
+                if (!hasClosedQuote) {
+                    throw new NSXError('Unclosed quote in attribute value: ' + attrName, null, valueStartPos + 1);
+                }
+            } else {
+                while (i < len && /[^\s)]/.test(attrString[i])) {
+                    attrValue += attrString[i++];
+                }
+            }
+            attributes[attrName] = attrValue.replace(/\+/g, ' ');
+        }
+        return attributes;
+    }
+    function parseTagAndAttributes(tagString) {
+        const match = tagString.match(/^([a-zA-Z][a-zA-Z0-9\-_]*)(\[([^\]]*)\])?/);
+        if (!match) {
+            throw new NSXError('Invalid tag name in "' + tagString + '"', null, 1);
+        }
+        return {
+            'tagName': match[1],
+            'attrs': match[3] ? parseAttributes(match[3]) : {}
+        };
+    }
+    const isSelfClosingTag = tagName => /^(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)$/i.test(tagName);
+    function escapeHtml(htmlString) {
+        return htmlString.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/#d;/g, '$').replace(/#a;/g, '&');
+    }
+    const generateHtmlTag = (tagName, attributes, content) => '<' + tagName + (Object.entries(attributes).length ? ' ' + Object.entries(attributes).map(([attrName, attrValue]) => attrName + '="' + attrValue + '"').join(' ') : '') + (isSelfClosingTag(tagName) ? ' /' : '') + '>' + (isSelfClosingTag(tagName) ? '' : escapeHtml(content) + ('</' + tagName + '>'));
+    function processHtmlLine(line) {
+        let tagPart = line, contentPart = '';
+        const tagMatch = line.match(/^([a-zA-Z0-9\-_]+(\[[^\]]*\])?)/);
+        tagMatch && (tagPart = tagMatch[1], contentPart = line.slice(tagPart.length).trim());
+        const {
+            tagName,
+            attrs
+        } = parseTagAndAttributes(tagPart);
+        return generateHtmlTag(tagName, attrs, contentPart);
+    }
+    function splitHtmlBlocks(htmlString) {
+        const blocks = [];
+        let currentContent = '', parenthesisCount = 0, charIndex = 0;
+        while (charIndex < htmlString.length) {
+            const char = htmlString[charIndex];
+            if (char === '(') {
+                parenthesisCount++;
+                currentContent += char;
+                charIndex++;
+                continue;
+            }
+            if (char === ')') {
+                parenthesisCount--;
+                if (parenthesisCount < 0) {
+                    throw new NSXError('Unbalanced parentheses in HTML block at position ' + charIndex, null, charIndex + 1);
+                }
+                currentContent += char;
+                charIndex++;
+                continue;
+            }
+            if (char === '&' && parenthesisCount === 0) {
+                let level = 1;
+                charIndex++;
+                while (htmlString[charIndex] === '&') {
+                    level++;
+                    charIndex++;
+                }
+                blocks.push({
+                    'level': level,
+                    'content': currentContent.trim()
+                });
+                currentContent = '';
+                continue;
+            }
+            currentContent += char;
+            charIndex++;
+        }
+        if (currentContent.trim()) {
+            blocks.push({
+                'level': 1,
+                'content': currentContent.trim()
+            });
+        }
+        return blocks;
+    }
+    const processedHtml = htmlContent.startsWith('$') ? htmlContent.slice(1).trim() : htmlContent.trim(), htmlBlocks = splitHtmlBlocks(processedHtml);
+    if (!htmlBlocks.length) {
+        return '';
+    }
+    const htmlStack = [];
+    for (const {
+                level,
+                content
+            } of htmlBlocks) {
+        try {
+            const generatedHtml = processHtmlLine(content);
+            if (htmlStack.length < level) {
+                htmlStack.push(generatedHtml);
+            } else {
+                let currentHtml = generatedHtml;
+                while (htmlStack.length >= level) {
+                    const previousHtml = htmlStack.pop();
+                    currentHtml = previousHtml.replace(/<\/[^>]+>$/, () => currentHtml + '</' + previousHtml.match(/^<([a-zA-Z0-9\-_]+)/)[1] + '>');
+                }
+                htmlStack.push(currentHtml);
+            }
+        } catch (error) {
+            log('error', error instanceof NSXError ? error.message : 'HTML Parsing Error: ' + error.message);
+        }
+    }
+    return htmlStack.reduceRight((accumulator, current) => current.replace(/<\/[^>]+>$/, () => accumulator + '</' + current.match(/^<([a-zA-Z0-9\-_]+)/)[1] + '>'));
+}
+;
+function parseCSS(cssContent) {
+    const replacedPercent = cssContent.replace(/#p;/g, '%'), trimmedCss = replacedPercent.trim();
+    if (trimmedCss.includes('{') && trimmedCss.includes('}') && trimmedCss.includes(':')) {
+        return replacedPercent;
+    }
+    const equalsIndex = trimmedCss.indexOf('=');
+    if (equalsIndex !== -1) {
+        const selector = trimmedCss.slice(0, equalsIndex).trim();
+        let properties = trimmedCss.slice(equalsIndex + 1).trim();
+        if (replacedPercent.includes('\n')) {
+            properties = replacedPercent.split('\n').slice(1).map(line => line.trim()).filter(Boolean).join(' ');
+        }
+        if (selector && properties) {
+            return selector + ' { ' + properties + ' }';
+        }
+    }
+    const parts = trimmedCss.split(/\s+/), selector = parts[0], properties = parts.slice(1);
+    if (!selector || !properties.length) {
+        return replacedPercent;
+    }
+    return selector + ' { ' + properties.join(' ') + ' }';
+}
+function parse(tokens) {
+    const components = new Map(), parseArguments = componentArgs => {
+            const parsedArgs = {};
+            let match;
+            while (match = /([a-zA-Z0-9_]+)(?:\s*=\s*(?:(['"])(.*?)\2|([^\s"'\]]+)))?/g.exec(componentArgs)) {
+                parsedArgs[match[1]] = match[3] !== undefined ? match[3] : match[4] !== undefined ? match[4] : '';
+            }
+            return /([a-zA-Z0-9_]+)(?:\s*=\s*(?:(['"])(.*?)\2|([^\s"'\]]+)))?/g.lastIndex = 0, parsedArgs;
+        }, replacePlaceholders = (template, data) => template.replace(/\{pass\.([a-zA-Z0-9_]+)\}/g, (fullMatch, key) => data[key] !== undefined ? data[key] : '');
+    const compiledOutput = { html: '', css: '', js: '' };
+    for (let i = 0; i < tokens.length; i++) {
+        const token = tokens[i];
+        try {
+            if (token.type === TokenType.HTML) {
+                compiledOutput.html += parseHTML(token.value) + '\n';
+            } else {
+                if (token.type === TokenType.CSS) {
+                    compiledOutput.css += parseCSS(token.value) + '\n';
+                } else {
+                    if (token.type === TokenType.JS) {
+                        const jsCode = token.value.replace(/#e;/g, '!');
+                        if (jsCode.startsWith('add ')) {
+                            const addMatch = /^add\s+([a-zA-Z0-9_]+)(?:\s*\[([^\]]*)\])?\s*(.*)$/s.exec(jsCode);
+                            if (!addMatch) {
+                                throw new NSXError('Invalid add syntax', token.line, 1);
+                            }
+                            const componentName = addMatch[1];
+                            let componentHtml = addMatch[3].trim();
+                            if (componentHtml.startsWith('$')) {
+                                componentHtml = parseHTML(componentHtml);
+                            }
+                            components.set(componentName, {
+                                'html': componentHtml,
+                                'args': addMatch[2] || ''
+                            });
+                        } else {
+                            if (jsCode.startsWith('use ')) {
+                                const useMatch = /^use\s+([a-zA-Z0-9_]+)(?:\s*\[([^\]]*)\])?/.exec(jsCode);
+                                if (!useMatch) {
+                                    throw new NSXError('Invalid use syntax', token.line, 1);
+                                }
+                                const componentToUse = useMatch[1], componentArguments = parseArguments(useMatch[2] || ''), componentData = components.get(componentToUse);
+                                if (!componentData) {
+                                    throw new NSXError('Component "' + componentToUse + '" used before definition', token.line, 1);
+                                }
+                                compiledOutput.html += replacePlaceholders(componentData.html, componentArguments) + '\n';
+                            } else {
+                                compiledOutput.js += jsCode + '\n';
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            log('error', error instanceof NSXError ? error.message : 'Parsing Error near line ' + (token?.line || 'unknown') + ', column ' + (token?.column || 1) + ': ' + error.message);
+        }
+    }
+    return compiledOutput;
+}
+function transformCSS(cssContent) {
+    const cssTransformations = [
+        [
+            /text-align-([a-z]+)/g,
+            'text-align',
+            value => value
+        ],
+        [
+            /text-decoration-([a-z]+)/g,
+            'text-decoration',
+            value => value
+        ],
+        [
+            /text-transform-([a-z]+)/g,
+            'text-transform',
+            value => value
+        ],
+        [
+            /text-shadow-([^;]+)/g,
+            'text-shadow',
+            value => value
+        ],
+        [
+            /size-([0-9]+)(px|em|rem|%)?/g,
+            'font-size',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /font-family-([a-zA-Z0-9,\s"'-]+)/g,
+            'font-family',
+            value => value
+        ],
+        [
+            /font-weight-([a-z0-9]+)/g,
+            'font-weight',
+            value => value
+        ],
+        [
+            /font-style-([a-z]+)/g,
+            'font-style',
+            value => value
+        ],
+        [
+            /line-height-([0-9.]+)/g,
+            'line-height',
+            value => value
+        ],
+        [
+            /letter-spacing-([0-9.]+)(px|em|rem)?/g,
+            'letter-spacing',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /word-spacing-([0-9.]+)(px|em|rem)?/g,
+            'word-spacing',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /color-([#a-zA-Z0-9]+)/g,
+            'color',
+            value => value
+        ],
+        [
+            /background-([#a-zA-Z0-9]+)/g,
+            'background',
+            value => value
+        ],
+        [
+            /background-color-([#a-zA-Z0-9]+)/g,
+            'background-color',
+            value => value
+        ],
+        [
+            /background-image-([^;]+)/g,
+            'background-image',
+            value => value
+        ],
+        [
+            /background-size-([a-z0-9% ]+)/g,
+            'background-size',
+            value => value
+        ],
+        [
+            /background-position-([a-z0-9% ]+)/g,
+            'background-position',
+            value => value
+        ],
+        [
+            /background-repeat-([a-z]+)/g,
+            'background-repeat',
+            value => value
+        ],
+        [
+            /margin-([0-9]+)(px|em|rem|%)?/g,
+            'margin',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /margin-top-([0-9]+)(px|em|rem|%)?/g,
+            'margin-top',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /margin-right-([0-9]+)(px|em|rem|%)?/g,
+            'margin-right',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /margin-bottom-([0-9]+)(px|em|rem|%)?/g,
+            'margin-bottom',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /margin-left-([0-9]+)(px|em|rem|%)?/g,
+            'margin-left',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /padding-([0-9]+)(px|em|rem|%)?/g,
+            'padding',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /padding-top-([0-9]+)(px|em|rem|%)?/g,
+            'padding-top',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /padding-right-([0-9]+)(px|em|rem|%)?/g,
+            'padding-right',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /padding-bottom-([0-9]+)(px|em|rem|%)?/g,
+            'padding-bottom',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /padding-left-([0-9]+)(px|em|rem|%)?/g,
+            'padding-left',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /border-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,
+            'border',
+            (width, unit, style, color) => '' + width + (unit || 'px') + ' ' + style + ' ' + color
+        ],
+        [
+            /border-([0-9]+)(px|em|rem)?/g,
+            'border-width',
+            (width, unit) => width + (unit || 'px')
+        ],
+        [
+            /border-style-([a-z]+)/g,
+            'border-style',
+            value => value
+        ],
+        [
+            /border-color-([#a-zA-Z0-9]+)/g,
+            'border-color',
+            value => value
+        ],
+        [
+            /border-radius-([0-9]+)(px|em|rem)?/g,
+            'border-radius',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /width-([0-9]+)(px|em|rem|%)?/g,
+            'width',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /height-([0-9]+)(px|em|rem|%)?/g,
+            'height',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /max-width-([0-9]+)(px|em|rem|%)?/g,
+            'max-width',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /min-width-([0-9]+)(px|em|rem|%)?/g,
+            'min-width',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /max-height-([0-9]+)(px|em|rem|%)?/g,
+            'max-height',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /min-height-([0-9]+)(px|em|rem|%)?/g,
+            'min-height',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /display-([a-z]+)/g,
+            'display',
+            value => value
+        ],
+        [
+            /flex-direction-([a-z]+)/g,
+            'flex-direction',
+            value => value
+        ],
+        [
+            /flex-wrap-([a-z]+)/g,
+            'flex-wrap',
+            value => value
+        ],
+        [
+            /justify-content-([a-z-]+)/g,
+            'justify-content',
+            value => value
+        ],
+        [
+            /align-items-([a-z-]+)/g,
+            'align-items',
+            value => value
+        ],
+        [
+            /align-content-([a-z-]+)/g,
+            'align-content',
+            value => value
+        ],
+        [
+            /gap-([0-9]+)(px|em|rem|%)?/g,
+            'gap',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /row-gap-([0-9]+)(px|em|rem|%)?/g,
+            'row-gap',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /column-gap-([0-9]+)(px|em|rem|%)?/g,
+            'column-gap',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /position-([a-z]+)/g,
+            'position',
+            value => value
+        ],
+        [
+            /top-([0-9]+)(px|em|rem|%)?/g,
+            'top',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /right-([0-9]+)(px|em|rem|%)?/g,
+            'right',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /bottom-([0-9]+)(px|em|rem|%)?/g,
+            'bottom',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /left-([0-9]+)(px|em|rem|%)?/g,
+            'left',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /overflow-([a-z]+)/g,
+            'overflow',
+            value => value
+        ],
+        [
+            /overflow-x-([a-z]+)/g,
+            'overflow-x',
+            value => value
+        ],
+        [
+            /overflow-y-([a-z]+)/g,
+            'overflow-y',
+            value => value
+        ],
+        [
+            /opacity-([0-9.]+)/g,
+            'opacity',
+            value => value
+        ],
+        [
+            /z-index-([0-9]+)/g,
+            'z-index',
+            value => value
+        ],
+        [
+            /cursor-([a-z-]+)/g,
+            'cursor',
+            value => value
+        ],
+        [
+            /pointer-events-([a-z-]+)/g,
+            'pointer-events',
+            value => value
+        ],
+        [
+            /box-shadow-([^;]+)/g,
+            'box-shadow',
+            value => value
+        ],
+        [
+            /object-fit-([a-z-]+)/g,
+            'object-fit',
+            value => value
+        ],
+        [
+            /object-position-([a-z0-9% ]+)/g,
+            'object-position',
+            value => value
+        ],
+        [
+            /transition-([^;]+)/g,
+            'transition',
+            value => value
+        ],
+        [
+            /transform-([^;]+)/g,
+            'transform',
+            value => value
+        ],
+        [
+            /animation-([^;]+)/g,
+            'animation',
+            value => value
+        ],
+        [
+            /size-([0-9]+)(px|em|rem)?/g,
+            'font-size',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /weight-([a-z0-9]+)/g,
+            'font-weight',
+            value => value
+        ],
+        [
+            /mawidth-([0-9]+)(px|em|rem|%)?/g,
+            'max-width',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /miheight-([0-9]+)(px|em|rem|%)?/g,
+            'min-height',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /border-top-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,
+            'border-top',
+            (width, unit, style, color) => '' + width + (unit || 'px') + ' ' + style + ' ' + color
+        ],
+        [
+            /border-right-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,
+            'border-right',
+            (width, unit, style, color) => '' + width + (unit || 'px') + ' ' + style + ' ' + color
+        ],
+        [
+            /border-bottom-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,
+            'border-bottom',
+            (width, unit, style, color) => '' + width + (unit || 'px') + ' ' + style + ' ' + color
+        ],
+        [
+            /border-left-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,
+            'border-left',
+            (width, unit, style, color) => '' + width + (unit || 'px') + ' ' + style + ' ' + color
+        ],
+        [
+            /border-top-left-radius-([0-9]+)(px|em|rem)?/g,
+            'border-top-left-radius',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /border-top-right-radius-([0-9]+)(px|em|rem)?/g,
+            'border-top-right-radius',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /border-bottom-left-radius-([0-9]+)(px|em|rem)?/g,
+            'border-bottom-left-radius',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /border-bottom-right-radius-([0-9]+)(px|em|rem)?/g,
+            'border-bottom-right-radius',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /outline-([0-9]+)(px|em|rem)?-([a-z]+)-([#a-zA-Z0-9]+)/g,
+            'outline',
+            (width, unit, style, color) => '' + width + (unit || 'px') + ' ' + style + ' ' + color
+        ],
+        [
+            /text-shadow-([a-zA-Z0-9# ,.-]+)/g,
+            'text-shadow',
+            value => value
+        ],
+        [
+            /filter-([^;]+)/g,
+            'filter',
+            value => value
+        ],
+        [
+            /clip-path-([^;]+)/g,
+            'clip-path',
+            value => value
+        ],
+        [
+            /visibility-([a-z]+)/g,
+            'visibility',
+            value => value
+        ],
+        [
+            /user-select-([a-z]+)/g,
+            'user-select',
+            value => value
+        ],
+        [
+            /white-space-([a-z]+)/g,
+            'white-space',
+            value => value
+        ],
+        [
+            /list-style-([a-z]+)/g,
+            'list-style',
+            value => value
+        ],
+        [
+            /float-([a-z]+)/g,
+            'float',
+            value => value
+        ],
+        [
+            /clear-([a-z]+)/g,
+            'clear',
+            value => value
+        ],
+        [
+            /vertical-align-([a-z]+)/g,
+            'vertical-align',
+            value => value
+        ],
+        [
+            /direction-([a-z]+)/g,
+            'direction',
+            value => value
+        ],
+        [
+            /resize-([a-z]+)/g,
+            'resize',
+            value => value
+        ],
+        [
+            /scroll-behavior-([a-z]+)/g,
+            'scroll-behavior',
+            value => value
+        ],
+        [
+            /scroll-snap-type-([a-z]+)/g,
+            'scroll-snap-type',
+            value => value
+        ],
+        [
+            /will-change-([a-z-]+)/g,
+            'will-change',
+            value => value
+        ],
+        [
+            /aspect-ratio-([0-9]+)\/([0-9]+)/g,
+            'aspect-ratio',
+            (num1, num2) => num1 + '/' + num2
+        ],
+        [
+            /columns-([0-9]+)/g,
+            'columns',
+            value => value
+        ],
+        [
+            /column-gap-([0-9]+)(px|em|rem|%)?/g,
+            'column-gap',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /order-([0-9]+)/g,
+            'order',
+            value => value
+        ],
+        [
+            /grid-template-columns-([^;]+)/g,
+            'grid-template-columns',
+            value => value
+        ],
+        [
+            /grid-template-rows-([^;]+)/g,
+            'grid-template-rows',
+            value => value
+        ],
+        [
+            /grid-gap-([0-9]+)(px|em|rem|%)?/g,
+            'grid-gap',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /transition-delay-([0-9.]+)(s|ms)?/g,
+            'transition-delay',
+            (value, unit) => value + (unit || 's')
+        ],
+        [
+            /transition-duration-([0-9.]+)(s|ms)?/g,
+            'transition-duration',
+            (value, unit) => value + (unit || 's')
+        ],
+        [
+            /transition-timing-function-([a-z-]+)/g,
+            'transition-timing-function',
+            value => value
+        ],
+        [
+            /animation-delay-([0-9.]+)(s|ms)?/g,
+            'animation-delay',
+            (value, unit) => value + (unit || 's')
+        ],
+        [
+            /animation-duration-([0-9.]+)(s|ms)?/g,
+            'animation-duration',
+            (value, unit) => value + (unit || 's')
+        ],
+        [
+            /animation-timing-function-([a-z-]+)/g,
+            'animation-timing-function',
+            value => value
+        ],
+        [
+            /perspective-([0-9]+)(px|em|rem|%)?/g,
+            'perspective',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /backface-visibility-([a-z]+)/g,
+            'backface-visibility',
+            value => value
+        ],
+        [
+            /outline-offset-([0-9]+)(px|em|rem)?/g,
+            'outline-offset',
+            (value, unit) => value + (unit || 'px')
+        ],
+        [
+            /tab-size-([0-9]+)/g,
+            'tab-size',
+            value => value
+        ],
+        [
+            /font-variant-([a-z-]+)/g,
+            'font-variant',
+            value => value
+        ],
+        [
+            /font-stretch-([a-z-]+)/g,
+            'font-stretch',
+            value => value
+        ],
+        [
+            /isolation-([a-z]+)/g,
+            'isolation',
+            value => value
+        ],
+        [
+            /mix-blend-mode-([a-z-]+)/g,
+            'mix-blend-mode',
+            value => value
+        ],
+        [
+            /pointer-events-([a-z-]+)/g,
+            'pointer-events',
+            value => value
+        ],
+        [
+            /blur-([0-9]+)(px|em|rem)?/g,
+            'filter',
+            (value, unit) => 'blur(' + value + (unit || 'px') + ')'
+        ],
+        [
+            /drop-shadow-([^;]+)/g,
+            'filter',
+            value => 'drop-shadow(' + value + ')'
+        ],
+        [
+            /grayscale-([0-9.]+)/g,
+            'filter',
+            value => 'grayscale(' + value + ')'
+        ],
+        [
+            /sepia-([0-9.]+)/g,
+            'filter',
+            value => 'sepia(' + value + ')'
+        ],
+        [
+            /invert-([0-9.]+)/g,
+            'filter',
+            value => 'invert(' + value + ')'
+        ],
+        [
+            /saturate-([0-9.]+)/g,
+            'filter',
+            value => 'saturate(' + value + ')'
+        ],
+        [
+            /hue-rotate-([0-9.]+)deg/g,
+            'filter',
+            value => 'hue-rotate(' + value + 'deg)'
+        ],
+        [
+            /brightness-([0-9.]+)/g,
+            'filter',
+            value => 'brightness(' + value + ')'
+        ],
+        [
+            /contrast-([0-9.]+)/g,
+            'filter',
+            value => 'contrast(' + value + ')'
+        ],
+        [
+            /keyframes-([a-zA-Z0-9_-]+)\s*=\s*([^@]+)/g,
+            '@keyframes',
+            (animationName, keyframeRules) => animationName + ' { ' + keyframeRules.trim() + ' }'
+        ],
+        [
+            /keyframes-([a-zA-Z0-9_-]+)\s*\{([^}]*)\}/g,
+            '@keyframes',
+            (animationName, keyframeRules) => animationName + ' { ' + keyframeRules.trim() + ' }'
+        ]
+    ];
+    for (const [regex, propertyName, valueFormatter] of cssTransformations) {
+        cssContent = cssContent.replace(regex, function (...args) {
+            if (typeof propertyName === 'string' && propertyName.startsWith('@keyframes')) {
+                return '@keyframes ' + valueFormatter(...args.slice(1, -2));
+            }
+            if (propertyName === 'filter') {
+                const formattedValue = valueFormatter(...args.slice(1, -2));
+                return 'filter: ' + formattedValue + ';';
+            }
+            return propertyName + ': ' + valueFormatter(...args.slice(1, -2)) + ';';
+        });
+    }
+    return cssContent;
+}
+function getNsxFiles() {
+    return fs.readdirSync(NSX_DIR).filter(file => file.endsWith('.nsx')).map(file => path.join(NSX_DIR, file));
+}
+async function compileAll() {
+    fs.existsSync(OUTPUT_DIR) && fs.rmSync(OUTPUT_DIR, {
+        'recursive': true,
+        'force': true
+    });
+    await fs.promises.mkdir(OUTPUT_DIR, { 'recursive': true });
+    const nsxFiles = getNsxFiles();
+    let compilationSuccessful = true;
+    for (const nsxFilePath of nsxFiles) {
+        try {
+            await fs.promises.access(nsxFilePath, fs.constants.F_OK);
+        } catch {
+            log('error', path.basename(nsxFilePath) + ' not found.');
+            compilationSuccessful = false;
+            continue;
+        }
+        try {
+            const fileContent = await fs.promises.readFile(nsxFilePath, 'utf8'),
+                lexedTokens = lex(fileContent),
+                parsedOutput = parse(lexedTokens),
+                shouldTransformCss = fileContent.split('\n').some(line => line.includes('#C2'));
+            if (shouldTransformCss) {
+                parsedOutput.css = transformCSS(parsedOutput.css);
+            }
+            const {
+                html: compiledHtml,
+                css: compiledCss,
+                js: compiledJs
+            } = parsedOutput;
+            let outputFilePath;
+            if (path.basename(nsxFilePath) === 'main.nsx') {
+                outputFilePath = path.join(OUTPUT_DIR, 'index.html');
+            } else {
+                const fileNameWithoutExt = path.basename(nsxFilePath, '.nsx');
+                outputFilePath = path.join(OUTPUT_DIR, fileNameWithoutExt + '.html');
+            }
+            const fullHtmlContent = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>' + compiledCss + '</style></head><body>' + compiledHtml + '<script>' + compiledJs + '</script></body></html>';
+            let existingFileContent = '';
+            try {
+                existingFileContent = await fs.promises.readFile(outputFilePath, 'utf8');
+            } catch {
+            }
+            if (existingFileContent !== fullHtmlContent) {
+                await fs.promises.writeFile(outputFilePath, fullHtmlContent);
+            }
+        } catch (error) {
+            let errorContext = '';
+            try {
+                const fileLines = await fs.promises.readFile(nsxFilePath, 'utf8'),
+                    errorLine = error.line || error instanceof NSXError && error.line || null;
+                if (errorLine) {
+                    const linesArray = fileLines.split('\n'),
+                        startLine = Math.max(0, errorLine - 2),
+                        endLine = Math.min(linesArray.length, errorLine + 1);
+                    errorContext = '\n' + linesArray.slice(startLine, endLine).map((lineContent, index) => {
+                        const currentLineNumber = startLine + index + 1;
+                        return (currentLineNumber === errorLine ? '>> ' : '   ') + currentLineNumber + ': ' + lineContent;
+                    }).join('\n');
+                }
+            } catch {
+            }
+            log('error', 'Compilation failed for ' + path.basename(nsxFilePath) + ' in file: ' + nsxFilePath + ': ' + error.message + errorContext);
+            if (error.stack) {
+                console.error(error.stack);
+            }
+            compilationSuccessful = false;
+        }
+    }
+    return compilationSuccessful;
+}
+const showHelp = () => log('info', '\nNSX Commands:\n  r  - Recompile all .nsx files in ../\n  c  - Clear console\n  q  - Quit the program\n  h  - Show this help menu\n  l  - List output files and attempt to open the output directory (' + OUTPUT_DIR + ')\n  v  - Show NSX version\n');
+function listOutputFiles() {
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        return log('error', 'Output directory does not exist: ' + OUTPUT_DIR);
+    }
+    try {
+        const outputDirectoryItems = fs.readdirSync(OUTPUT_DIR, { 'withFileTypes': true });
+        outputDirectoryItems.length ? (log('info', 'Output files:'), outputDirectoryItems.forEach(item => {
+            if (item.isDirectory()) {
+                const subDirectoryFiles = fs.readdirSync(path.join(OUTPUT_DIR, item.name));
+                subDirectoryFiles.forEach(subFile => console.log('- ' + item.name + '/' + subFile));
+            } else {
+                console.log('- ' + item.name);
+            }
+        })) : log('info', 'No files found in output directory: ' + OUTPUT_DIR);
+        const openCommands = {
+                'darwin': 'open "' + OUTPUT_DIR + '"',
+                'win32': 'start "" "' + OUTPUT_DIR + '"',
+                'linux': 'xdg-open "' + OUTPUT_DIR + '"'
+            }, platformCommand = openCommands[process.platform];
+        if (!platformCommand) {
+            return log('error', 'Unsupported platform for opening directory automatically.');
+        }
+        log('info', 'Attempting to open directory: ' + OUTPUT_DIR + '...');
+        exec(platformCommand, (error, stdout, stderr) => {
+            if (error) {
+                return log('error', 'Failed to open directory: ' + error.message), log('error', 'stderr: ' + stderr);
+            }
+            if (stderr) {
+                log('info', 'Open command stderr: ' + stderr);
+            }
+            log('info', 'Directory should be open.');
+        });
+    } catch (error) {
+        log('error', 'Error listing or opening output directory: ' + error.message);
+    }
+}
+const rl = readline.createInterface({
+    'input': process.stdin,
+    'output': process.stdout,
+    'prompt': '> '
+});
+console.clear();
+log('success', 'NSX Started.');
+log('info', 'Press \'h\' for help.');
+const promptCompiler = () => rl.prompt();
+async function handleCompile(isManualRecompile = false) {
+    if (!await compileAll()) {
+        log('error', isManualRecompile ? 'Manual recompilation failed.' : 'Compilation failed.');
+    }
+    promptCompiler();
+}
+handleCompile();
+let debounceTimer = null, watchedFiles = new Set();
+function watchFileIfNeeded(filePath) {
+    if (!watchedFiles.has(filePath)) {
+        try {
+            fs.watch(filePath, { 'persistent': true }, (eventType) => {
+                eventType === 'change' && (clearTimeout(debounceTimer), debounceTimer = setTimeout(() => {
+                    handleCompile();
+                }, 200));
+            });
+            watchedFiles.add(filePath);
+        } catch {
+        }
+    }
+}
+const watchFiles = () => {
+    fs.watch(NSX_DIR, { 'persistent': true }, (eventType, filename) => {
+        filename && filename.endsWith('.nsx') && (getNsxFiles().forEach(watchFileIfNeeded), clearTimeout(debounceTimer), debounceTimer = setTimeout(() => {
+            handleCompile();
+        }, 200));
+    });
+    getNsxFiles().forEach(watchFileIfNeeded);
+    setInterval(() => {
+        getNsxFiles().forEach(watchFileIfNeeded);
+    }, 1000);
+};
+watchFiles();
+const commands = {
+    'q': () => {
+        rl.close();
+        process.exit(0);
+    },
+    'exit': () => {
+        rl.close();
+        process.exit(0);
+    },
+    'h': showHelp,
+    'help': showHelp,
+    'r': () => {
+        log('info', 'Manual recompilation requested...');
+        handleCompile(true);
+    },
+    'recompile': () => {
+        log('info', 'Manual recompilation requested...');
+        handleCompile(true);
+    },
+    'c': () => {
+        console.clear();
+        log('success', 'NSX Running.');
+        log('info', 'Watching all .nsx files in ' + NSX_DIR + ' for changes.');
+        log('info', 'Press \'h\' for help.');
+        promptCompiler();
+    },
+    'clear': () => {
+        console.clear();
+        log('success', 'NSX Running.');
+        log('info', 'Watching all .nsx files in ' + NSX_DIR + ' for changes.');
+        log('info', 'Press \'h\' for help.');
+        promptCompiler();
+    },
+    'l': () => {
+        listOutputFiles();
+        promptCompiler();
+    },
+    'list': () => {
+        listOutputFiles();
+        promptCompiler();
+    },
+    'v': () => {
+        log('info', 'NSX version: ' + VERSION);
+        promptCompiler();
+    },
+    'version': () => {
+        log('info', 'NSX version: ' + VERSION);
+        promptCompiler();
+    }
+};
+rl.on('line', input => {
+    const command = input.trim().toLowerCase();
+    if (commands[command]) {
+        commands[command]();
+    } else {
+        log('info', 'Unknown command: "' + input.trim() + '". Press \'h\' for help.');
+        promptCompiler();
+    }
+}).on('close', () => {
+    process.exit(0);
+});
