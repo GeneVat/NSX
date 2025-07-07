@@ -1,6 +1,6 @@
 # NSX Guide
 
-This document explains how to convert shorthand syntax into standard code.
+To use # and #js like v0.4.0 have `#0.4.0` as a line.
 
 ## HTML
 
@@ -22,11 +22,11 @@ This document explains how to convert shorthand syntax into standard code.
 
 ### Multi-line JavaScript
 
-Enclose multi-line JS blocks between ```# and #js``` markers:
-``#
+Enclose multi-line JS blocks between ```#jss and #jse``` markers:
+``#jss
 console.log('This is a multi-line JS block.');
 console.log('It will be added to script.js');
-#js``
+#jse``
 converts to:
 console.log('This is a multi-line JS block.');
 console.log('It will be added to script.js');
