@@ -1,0 +1,11 @@
+$div Want to see the time? Here it is: ‎
+    &span[id="t"]
+!setInterval(() => t.textContent = new Date().toLocaleTimeString(), 1000);
+!let count = 0;
+!function run() {
+      count++;
+      document.getElementById('counterBtn').textContent = count + ' Click(s)';
+    }
+
+!add Button $button[id="counterBtn" onclick="{pass.click}"] {pass.text}
+!use Button[click="run()" text="Click Me"]

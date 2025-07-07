@@ -1,45 +1,42 @@
-# NSX Guide
+# NSX
 
-To start, run `npm run start` with Node.js installed.
+Run `npm run start` with Node Installed
 
-## HTML Syntax
+## Block Types
 
-- Use `$` to denote HTML tags.
-    - Example: `$h1 hi` converts to `<h1>hi</h1>`
-    - Example: `$h1(class="text") hi` converts to `<h1 class="text">hi</h1>`
-    - You can use parentheses for attributes: `$a(href="https://example.com" class="link") click here`
-    - Use `+` inside attribute values for spaces: `$h1(class="big+red") hi` → `<h1 class="big red">hi</h1>`
+- `$ ...` : HTML block
+- `% ...` : CSS block
+- `! ...` : JavaScript block
 
-- Use `&` to denote child elements (outside of parentheses).
-    - Example: `$div &h1 texthere &h1 hello` converts to:
-    ```html
-    <div>
-      <h1>texthere</h1>
-      <h1>hello</h1>
-    </div>
-    ```
+Blocks can be single-line or multi-line (indented).
 
-### Components (Reusable HTML)
+## Example
 
-- Use `!add` to define a reusable HTML block (component).
-    - Example: `!add hi $h1 Hello` creates a component called `hi` with the HTML `$h1 Hello`.
-    - You can use `{pass.key}` in your component HTML to inject arguments.
+```
+$h1 Hello World!
+%h1 color: red;
+!console.log("Hello from JS!");
+```
 
-- Use `!use` to include a component, optionally passing arguments.
-    - Example: `!use hi` will insert the `hi` component.
-    - Example: `!use hi(title="Welcome" text="Hello")` will inject arguments into `{pass.title}` and `{pass.text}` in the component.
+## Multi-line Blocks
 
----
+Indent lines under a block prefix:
 
-## CSS Syntax
+```
+$div
+  &h2 Welcome
+  &p This is a paragraph.
+```
+Childern in HTML are with `&`; Example: `$div &div &&h1 Text` -> `<div><div><h1> Text </h1></div></div>
+## Components
 
-- Use `%` for CSS rules (no braces `{}` needed).
-    - Example: `%body = font-size:10px; color:red;` converts to:
-    ```css
-    body { font-size:10px; color:red; }
-    ```
+Define reusable HTML snippets:
 
-### Shorthand CSS Rules
+```
+!add Button $button[class={pass.class}] {pass.text}
+!use Button[class="primary" text="Click Me"]
+```
+## Shorthand CSS Rules
 
 - To enable shorthand CSS syntax, add `#C2` anywhere in your `main.nsx` file.
 - Shorthand format examples:
@@ -63,54 +60,31 @@ To start, run `npm run start` with Node.js installed.
     body { text-align: center; color: red; font-size: 20px; }
     ```
 
----
+## Special Escape Codes
 
-## JavaScript Syntax
-
-- Use `!` for JavaScript statements.
-    - Example: `!console.log('Hello, World!')` becomes `console.log('Hello, World!')`.
-
----
-
-## Comments & Multi-line Syntax
-
-- Start a line with `*` to add a comment (ignored).
-    - Example: `* This is a comment`
-
-- To write multi-line blocks, indent lines after the initial line:
-    - Example for HTML:
-      ```
-      $h1
-        This is a multi-line
-        heading!
-      ```
-      Converts to:
-      ```html
-      <h1>This is a multi-line
-      heading!</h1>
-      ```
-
-    - Example for CSS:
-      ```
-      %body
-        font-size: 20px;
-        color: blue;
-      ```
-      Converts to:
-      ```css
-      body { font-size: 20px; color: blue; }
-      ```
+- In HTML:
+  - `#d;` → `$`
+  - `#a;` → `&`
+- In CSS:
+  - `#p;` → `%`
+- In JS:
+  - `#e;` → `!`
 
 ---
 
-## File Watching & Commands
+## Usage
 
-- The compiler watches `main.nsx` for changes and recompiles automatically.
-- Console commands:
-    - `r` - Recompile manually
-    - `c` - Clear console
-    - `q` - Quit
-    - `h` - Show help
-    - `l` - List output files and open output directory
+Run the NSX with
 
----
+```sh
+npm run start
+```
+
+### Commands
+
+- `r` or `recompile` : Recompile files
+- `c` or `clear`     : Clear the console
+- `l` or `list`      : List output files and open output directory
+- `v` or `version`   : Show NSX version
+- `h` or `help`      : Show help menu
+- `q` or `exit`      : Quit
