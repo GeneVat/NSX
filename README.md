@@ -22,8 +22,8 @@ All lines compile as one line,
 ` $div $h1 Hi `
 ` $h2 Hi `
 Will compile the same as: ` $div $h1 Hi $h2 Hi ` 
-Which will output:  ` <div> <h1> Hi <h2> Hi </h2> </h1> </div> `
-With the <h2> inside the <h1>
+Which will output:  `<div> <h1> Hi <h2> Hi </h2> </h1> </div>`
+With the `<h2> inside the <h1>`
 To output:  ` <div> <h1> Hi </h1> <h2> Hi </h2> </div> `
 Write,
 ` $div $h1 Hi %div`
