@@ -1,9 +1,10 @@
-%.classname3 { 
-    text-align:center font-size:30px
-}
-!usable-add usable-name $div+class="classname1+classname2" {
-    &p+class="classname3" 'This is centered and 30px in size' 
-    &p 'This is not centered and not 30px in size' 
-    }
+#C2
+%.center-large =
+    text-align-center
+    size-30
 
-!usable-use usable-name
+!add name $div(class="classname1 classname2")
+    &p(class="center-large") {pass.Centered}
+    &p {pass.NotCentered}
+
+!use name(Centered="This is centered and 30px in size" NotCentered="This is not centered and not 30px in size")
