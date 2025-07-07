@@ -3,7 +3,7 @@
 NDX is a HTML syntax.
 #### Tags
 $ are open tags and % are optional closing tags.
-@script is used for js
+@js is used for <script>
 #### Format
 
 Content is put after the tag with no closing:
@@ -47,4 +47,4 @@ $ - Open Tag
 % - Closing tag
 & - 'Starts' new code disconected from the rest 
 add +class/href/style="text" to a open tag to add content
-@, same as $, but for JS
+@, same as $, but for JS tag, @js
